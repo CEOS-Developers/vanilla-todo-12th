@@ -19,10 +19,13 @@
 - JavaScript를 이용한 DOM 조작을 이해합니다.
 - Vanilla.js를 이용한 어플리케이션 상태 관리 방법을 이해합니다.
 
-## 진행 방식
+## 기한
 
-- 기한 : 2020년 9월 18일(금)까지
-- 제출 방법 : [스터디 과제 제출 방법](https://github.com/CEOS-Developers/react-profile/blob/master/docs/how-to-submit/README.md)
+- 2020년 9월 18일(금)까지
+
+## Key Questions
+
+- TODO-add
 
 ## 필수 요건
 
