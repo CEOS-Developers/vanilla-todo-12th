@@ -25,7 +25,11 @@
 
 ## Key Questions
 
-- TODO-add
+- DOM은 무엇인가요?
+- HTML (tag) Element를 JavaScript로 생성하는 방법은 어떤 것이 있고, 어떤 방법이 가장 적합할까요?
+- DOM에서 발생하는 Event는 방법에는 어떤 것이 있고, 어떤 방법이 가장 적합할까요?
+- Flexbox Layout은 무엇이며, 어떻게 사용하나요?
+- JavaScript가 다른 언어들에 비해 특이하거나 주목할만한 점에는 어떤 것들이 있나요?
 
 ## 필수 요건
 
