@@ -3,6 +3,7 @@ const toDoInput = toDoForm.querySelector(".input-text");
 
 const PENDING_CLASS = "item-pending";
 const DONE_CLASS = "item-done";
+const SHOWING_CLASS = "showing";
 
 let pendingList = [];
 let doneList = [];
@@ -54,32 +55,42 @@ const paint = {
 
     // 대기중 값 그리기
     pendingList: (value) => {
+        const img = document.createElement("img");
+        img.src = "./img/bin.png";
+        img.addEventListener("click", interaction.imgClick);
+
         const li = document.createElement("li");
         li.classList.add("item-pending");
         li.innerHTML = value;
-        li.addEventListener("mouseover", interaction.mouseOver); 
+        li.appendChild(img);
         li.addEventListener("click", interaction.click);
+
         document.querySelector("ul.list-pending").appendChild(li);
     },
 
     // 완료 값 그리기
     doneList: (value) => {
+        const img = document.createElement("img");
+        img.src = "./img/bin.png";
+        img.addEventListener("click", interaction.imgClick);
+
         const li = document.createElement("li");
         li.classList.add("item-done");
         li.innerHTML = value;
-        li.addEventListener("mouseover", interaction.mouseOver); 
+        li.appendChild(img);
+
         li.addEventListener("click", interaction.click);
         document.querySelector("ul.list-done").appendChild(li);
     },
 
     // 대기중 값 빼기
     removePendingList: (event) => {
-        document.querySelector("ul.list-pending").removeChild(event.target);
+        event.target.parentNode.removeChild(event.target);
     },
 
     // 완료 값 빼기
     removeDoneList: (event) => {
-        document.querySelector("ul.list-done").removeChild(event.target);
+        event.target.parentNode.removeChild(event.target);
     },
 
     // textField 비우기
@@ -102,14 +113,10 @@ const interaction = {
         paint.inputEmpty();
     },
 
-    // To do List 항목 위에 마우스 올렸을 때
-    mouseOver: (event) => {
-        // console.log(event.target);
-    },
-
     // To do List 항목을 클릭했을 때
     click: (event) => {
-        const value = event.target.innerHTML;
+        if (event.target.tagName == "IMG") return;
+        const value = event.target.textContent; // innerHTML X
         if (event.target.classList.contains(DONE_CLASS)) {
             list.removeFromDoneList(value);
             paint.removeDoneList(event);
@@ -127,6 +134,11 @@ const interaction = {
 
             paint.listCount();
         }
+    },
+
+    // 쓰레기통 img 클릭했을 때
+    imgClick: (event) => {
+        event.target.parentNode.parentNode.removeChild(event.target.parentNode);
     }
 }
 

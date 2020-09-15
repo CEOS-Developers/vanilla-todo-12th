@@ -132,9 +132,9 @@ li {
 img {
   display: none;
   width: 5%;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
-.showing {
+li:hover img {
   display: block;
 }
