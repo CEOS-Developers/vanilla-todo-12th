@@ -39,3 +39,39 @@ p {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
+
+.firstRow,.secondRow{
+  height:10vh;
+  margin-left: 1rem;
+}
+
+.firstList,.secondList{
+  height:35vh;
+}
+
+.thirdRow{
+  height:10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.todoInput{
+  width: 80%;
+  height: 60%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  text-align: center;
+  margin: 0.3rem;
+  
+}
+
+.plusButton{
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  background-color: #2ec1ac;
+  border-radius: 20px;
+  cursor: pointer;
+}
