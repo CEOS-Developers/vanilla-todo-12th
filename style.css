@@ -28,6 +28,13 @@ p {
   all: unset;
 }
 
+button{
+  cursor: pointer;
+  margin-left: auto;
+}
+ul{
+  display: flex;
+}
 .container {
   width: 350px;
   height: 600px;
@@ -43,10 +50,17 @@ p {
 .firstRow,.secondRow{
   height:10vh;
   margin-left: 1rem;
+  
 }
+
+
 
 .firstList,.secondList{
   height:35vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow-y: scroll;
 }
 
 .thirdRow{
@@ -73,5 +87,8 @@ p {
   text-align: center;
   background-color: #2ec1ac;
   border-radius: 20px;
-  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.trash{
+  width: 1rem;
 }
