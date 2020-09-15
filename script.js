@@ -1,12 +1,58 @@
 const toDoForm = document.querySelector("form");
 const toDoInput = toDoForm.querySelector(".input-text");
+const toDoButton = toDoForm.querySelector(".input-button");
 
 const PENDING_CLASS = "item-pending";
 const DONE_CLASS = "item-done";
 const SHOWING_CLASS = "showing";
+const TODO_DB = "todo";
 
+// 이거 나중에 객체리스트로 고쳐주자. 코드 훨씬 간결해질듯.
 let pendingList = [];
 let doneList = [];
+
+// localStorage 모델: 웹이 로드 될 때 기존 투두리스트를 가져오기 위함
+const localStorageModel = {
+    // localStorage에 저장
+    save: () => {
+        let list = [];
+        pendingList.forEach((item, i) => {
+            let temp = {
+                "id": i + 1,
+                "text": item,
+                "done": false
+            }
+            list.push(temp);
+        })
+        doneList.forEach((item, i) => {
+            let temp = {
+                "id": (i + 1) * 100002,
+                "text": item,
+                "done": true
+            }
+            list.push(temp);
+        })
+        localStorage.setItem(TODO_DB, JSON.stringify(list));
+    },
+    
+    // localStorage에서 로드
+    load: () => {
+        const loaded = localStorage.getItem(TODO_DB);
+        if (loaded !== null) {
+            const parsed = JSON.parse(loaded);
+            parsed.forEach((item) => {
+                if (item.done) {
+                    paint.doneList(item.text);
+                    list.addToDoneList(item.text);
+                } else {
+                    paint.pendingList(item.text);
+                    list.addToPendingList(item.text);
+                }
+            })
+            paint.listCount(); // 이건 원래 여기 X
+        }
+    }
+}
 
 // List 모델
 const list = {
@@ -111,6 +157,8 @@ const interaction = {
         paint.listCount();
         
         paint.inputEmpty();
+
+        localStorageModel.save();
     },
 
     // To do List 항목을 클릭했을 때
@@ -123,41 +171,41 @@ const interaction = {
 
             list.addToPendingList(value);
             paint.pendingList(value);
-
-            paint.listCount();
         } else {
             list.removeFromPendingList(value);
             paint.removePendingList(event);
 
             list.addToDoneList(value);
             paint.doneList(value);
-
-            paint.listCount();
         }
+
+        paint.listCount();
+
+        localStorageModel.save();
     },
 
     // 쓰레기통 img 클릭했을 때
     imgClick: (event) => {
+        if (event.target.parentNode.classList.contains(PENDING_CLASS)) {
+            list.removeFromPendingList(event.target.parentNode.textContent);
+        } else {
+            list.removeFromDoneList(event.target.parentNode.textContent);
+        }
+        
         event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+        
+        paint.listCount();
+
+        localStorageModel.save();
     }
 }
 
 
 function init() {
-    paint.listCount();
+
+    localStorageModel.load();
     toDoForm.addEventListener("submit", interaction.submit);
-    
-    // 값이 저장되어 있으면서 화면이 로드 될 때 필요한 코드
-    // pendingList.forEach((item) => {
-    //     paint.pendingList(item);
-    // })
-    // doneList.forEach((item) => {
-    //     paint.doneList(item);
-    // })
-    // document.querySelectorAll("li").forEach((item) => {
-    //     item.addEventListener("mouseover", interaction.mouseOver); // 휴지통 만들 때 필요한 event
-    //     item.addEventListener("click", interaction.click);
-    // })
+    toDoButton.addEventListener("click", interaction.submit);
 }
 
 init();
