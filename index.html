@@ -7,7 +7,28 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="container-list">
+        <h3 class="title pending">
+          대기중 (<span class="count count-pending">0</span>)
+        </h3>
+        <ul class="list">
+          <li class="item item-pending">To Do List 만들기</li>
+          <li class="item item-pending">도서관 책 반납하기</li>
+        </ul>
+        <h3 class="title done">
+          완료됨 (<span class="count count-done">0</span>)
+        </h3>
+        <ul class="list">
+          <li class="item item-done">방 청소</li>
+          <li class="item item-done">도서관 책 빌리기</li>
+        </ul>
+      </div>
+      <form class="container-form">
+        <input class="input-text" type="text" placeholder="새로운 할일 추가">
+        <input class="input-button" type="button" value="+">
+      </form>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
