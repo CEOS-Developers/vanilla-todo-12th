@@ -21,11 +21,17 @@ body {
   background: #2ec1ac;
 }
 
-input,
-button,
+
+button, /*왜있음??*/
 ul,
 p {
   all: unset;
+}
+
+h2 {
+  /* text-align: center; */
+  padding: 0 15px;
+  font-size: 1.2rem;
 }
 
 .container {
@@ -38,4 +44,41 @@ p {
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
+}
+
+.inputNewTasks{
+  height: 50px;
+  padding: 8px;
+  flex-direction: row;
+  align-items: stretch;
+
+  display:flex;
+
+}
+
+#todoInput{
+  flex: 1; /*specify it for a child if you wnat it to fill the remaining horizontal spaces*/
+  border-radius: 10px;
+  padding: 0.2px;
+  margin-right: 5px;
+  
+  text-align: center;
+  font-size: 1em;
+  
+
+
+}
+#addButton{
+  width : 33px;
+  height : 33px;
+  margin-right: 3px;
+  border-radius: 20px;
+
+  text-align: center;
+
+  background-color: #2ec1ac;
+  -webkit-text-fill-color: white;
+
+
+
 }

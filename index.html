@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanilla Todo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h2> 대기중(
+      <span id="pendingingTasksNumber">0</span>
+      )
+    </h2>
+    <div class = "todosPedningList"></div>
+    <h2> 완료됨(
+      <span id="finishedTasksNumber">0</span>
+      )
+    </h2>
+    <div class = "FinishedTasksList">
+    </div>
+    <form class="inputNewTasks">
+      <input id="todoInput" type="text" size="20" placeholder="새로운 할 일 추가">
+      <button type="submit" id="addButton">+</button>
+    </form>
+  </div>
   <script src="script.js"></script>
+</body>
+
 </html>
