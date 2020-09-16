@@ -13,19 +13,23 @@ body {
   height: 100vh;
 
   /* Center Container */
-  display: flex;
+  display: flex; 
   align-items: center;
-  justify-content: center;
+  justify-content: center;   
 
   /* Coloring */
   background: #2ec1ac;
 }
 
-input,
+/* input, */
 button,
 ul,
 p {
   all: unset;
+}
+
+ul {
+  padding: 2px 5px;
 }
 
 .container {
@@ -39,3 +43,43 @@ p {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
+
+/* .inner-container {
+  height: 100%;
+  flex-direction: column; 
+  display: flex;
+} */
+
+.wait {
+  /* flex-grow: 1; */
+  padding: 10px 10px;
+}
+
+.complete {
+  /* flex-grow: 1; */
+  padding: 10px 10px;
+}
+
+.list {
+  flex-grow: 8;
+  padding: 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.add {
+  flex-grow: 0.5;
+  padding: 10px 10px;
+
+  /* border-top: 1px solid black; */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+/* .add_input {
+  margin: 1px;
+  border: black;
+  border-color: black;
+  background-color: white;
+} */
