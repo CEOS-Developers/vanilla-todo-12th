@@ -2,6 +2,12 @@
 
 
 
+
+
+
+
+
+
 - DOM은 무엇인가요?
 - HTML (tag) Element를 JavaScript로 생성하는 방법은 어떤 것이 있고, 어떤 방법이 가장 적합할까요?
 - DOM에서 발생하는 Event는 방법에는 어떤 것이 있고, 어떤 방법이 가장 적합할까요?
@@ -12,11 +18,24 @@
 
 
 
+
+
+
+
+
+
 ### DOM은 무엇인가요?
 
 브라우저에 이미 내장되어 있는 모델로, js언어로 HTML에 접근하기 위해 사용됩니다. document에는 HTML을 다루는 여러가지 메소드들이 존재합니다.
 
 <img src="https://user-images.githubusercontent.com/56102421/93298489-3df6f400-f82e-11ea-87e1-8479d5609b1c.png" > 
+
+
+
+
+
+
+
 
 
 
@@ -42,9 +61,23 @@ cf> iOS에서는 dequeue메소드와 같이 데이터를 담는 상자는 반복
 
 
 
+
+
+
+
+
+
+
 ### DOM에서 발생하는 Event는 방법에는 어떤 것이 있고, 어떤 방법이 가장 적합할까요?
 
 DOM에서 발생하는 Event엔 여러가지가 있고 [이 사이트](https://developer.mozilla.org/ko/docs/Web/Events)를 참고했습니다. 미션에서는 `click` `submit` 두 가지 event만 사용하였고, 그 상황마다 Event가 발생하는 시점을 잘 생각해보고 결정해야할 것 같습니다.
+
+
+
+
+
+
+
 
 
 
@@ -70,7 +103,14 @@ DOM에서 발생하는 Event엔 여러가지가 있고 [이 사이트](https://d
 
 위 네개만 알아도 배치는 거의 완성할 수 있었습니다.
 
-👉  [연습하기 좋은 사이트](http://flexboxfroggy.com/#ko)도 발견
+👉  [연습하기 좋은 사이트](http://flexboxfroggy.com/#ko) 발견
+
+
+
+
+
+
+
 
 
 
@@ -101,9 +141,23 @@ DOM에서 발생하는 Event엔 여러가지가 있고 [이 사이트](https://d
 
 
 
+
+
+
+
+
+
+
 ### 코드의 추상화 수준이란 무엇인가요?
 
 🤯 더 생각해볼 것
+
+
+
+
+
+
+
 
 
 
