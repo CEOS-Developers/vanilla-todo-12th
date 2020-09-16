@@ -2,54 +2,22 @@ const toDoForm = document.querySelector("form");
 const toDoInput = toDoForm.querySelector(".input-text");
 const toDoButton = toDoForm.querySelector(".input-button");
 
-const PENDING_CLASS = "item-pending";
-const DONE_CLASS = "item-done";
-const SHOWING_CLASS = "showing";
 const TODO_DB = "todo";
-
-// 이거 나중에 객체리스트로 고쳐주자. 코드 훨씬 간결해질듯.
-let pendingList = [];
-let doneList = [];
+let toDoList = [];
 
 // localStorage 모델: 웹이 로드 될 때 기존 투두리스트를 가져오기 위함
 const localStorageModel = {
     // localStorage에 저장
     save: () => {
-        let list = [];
-        pendingList.forEach((item, i) => {
-            let temp = {
-                "id": i + 1,
-                "text": item,
-                "done": false
-            }
-            list.push(temp);
-        })
-        doneList.forEach((item, i) => {
-            let temp = {
-                "id": (i + 1) * 100002,
-                "text": item,
-                "done": true
-            }
-            list.push(temp);
-        })
-        localStorage.setItem(TODO_DB, JSON.stringify(list));
+        localStorage.setItem(TODO_DB, JSON.stringify(toDoList));
     },
-    
+
     // localStorage에서 로드
     load: () => {
         const loaded = localStorage.getItem(TODO_DB);
         if (loaded !== null) {
             const parsed = JSON.parse(loaded);
-            parsed.forEach((item) => {
-                if (item.done) {
-                    paint.doneList(item.text);
-                    list.addToDoneList(item.text);
-                } else {
-                    paint.pendingList(item.text);
-                    list.addToPendingList(item.text);
-                }
-            })
-            paint.listCount(); // 이건 원래 여기 X
+            toDoList = parsed;
         }
     }
 }
@@ -58,85 +26,90 @@ const localStorageModel = {
 const list = {
     // 개수 계산
     getCount: () => {
+        let pending = 0;
+        toDoList.forEach((item) => {
+            if (!item.done) {
+                pending++;
+            }
+        })
         return {
-            pending: pendingList.length,
-            done: doneList.length
+            pending: pending,
+            done: toDoList.length - pending
         }
     },
 
-    // 대기중 배열에 추가
-    addToPendingList: (value) => {
-        pendingList.push(value);
-    },
-
-    // 완료 배열에 추가
-    addToDoneList: (value) => {
-        doneList.push(value);
-    },
-
-    // 대기중 배열에서 제거
-    removeFromPendingList: (value) => {
-        const i = pendingList.findIndex((item) => {
-            return item == value
+    // list 대기중 완료 토글
+    updateList: (value, isDone) => {
+        const i = toDoList.findIndex((item) => {
+            return item.text == value;
         })
-        pendingList.splice(i, 1);
+        toDoList[i].done = toDoList[i].done == isDone ? !isDone : isDone;
     },
 
-    // 완료 배열에서 제거
-    removeFromDoneList: (value) => {
-        const i = doneList.findIndex((item) => {
-            return item == value
+    // toDoList 배열에 추가  -> submit 할 때
+    addToList: (value) => {
+        let item = {
+            "id": toDoList.length + 1,
+            "text": value,
+            "done": false
+        }
+        toDoList.push(item);
+    },
+
+    // toDoList 배열에서 제거 -> 휴지통
+    removeFromList: (value) => {
+        const i = toDoList.findIndex((item) => {
+            return item.text == value;
         })
-        doneList.splice(i, 1);
+        toDoList.splice(i, 1);
     }
 }
 
 // Paint 모델: 화면에 그리고 빼는 것과 관련
 const paint = {
+    // 새로고침 화면 그리기
+    loadData: () => {
+        localStorageModel.load();
+        
+        paint.updateList();
+        paint.listCount();
+    },
+
     // 리스트 개수 그리기
     listCount: () => {
         document.querySelector(".count-pending").innerHTML = list.getCount().pending;
         document.querySelector(".count-done").innerHTML = list.getCount().done;
     },
 
-    // 대기중 값 그리기
-    pendingList: (value) => {
-        const img = document.createElement("img");
-        img.src = "./img/bin.png";
-        img.addEventListener("click", interaction.imgClick);
+    // toDoList 다시 그리기
+    updateList: () => {
+        const ul = document.querySelectorAll("ul");
+        console.log(ul[0].childNodes);
+        ul.forEach((list) => {
+            var child = list.lastElementChild;
+            while (child) {
+                list.removeChild(child);
+                child = list.lastElementChild;
+            }
+        })    
+        
+        toDoList.forEach((item) => {
+            const addClass = !item.done ? "item-pending" : "item-done";
+            const addToList = !item.done ? "ul.list-pending" : "ul.list-done";
 
-        const li = document.createElement("li");
-        li.classList.add("item-pending");
-        li.innerHTML = value;
-        li.appendChild(img);
-        li.addEventListener("click", interaction.click);
+            const img = document.createElement("img");
+            img.src = "./img/bin.png";
+            img.addEventListener("click", interaction.imgClick);
 
-        document.querySelector("ul.list-pending").appendChild(li);
-    },
+            const li = document.createElement("li");
+            li.classList.add(addClass);
+            li.innerHTML = item.text;
+            li.appendChild(img);
 
-    // 완료 값 그리기
-    doneList: (value) => {
-        const img = document.createElement("img");
-        img.src = "./img/bin.png";
-        img.addEventListener("click", interaction.imgClick);
+            li.addEventListener("click", interaction.click);
+            document.querySelector(addToList).appendChild(li);
 
-        const li = document.createElement("li");
-        li.classList.add("item-done");
-        li.innerHTML = value;
-        li.appendChild(img);
-
-        li.addEventListener("click", interaction.click);
-        document.querySelector("ul.list-done").appendChild(li);
-    },
-
-    // 대기중 값 빼기
-    removePendingList: (event) => {
-        event.target.parentNode.removeChild(event.target);
-    },
-
-    // 완료 값 빼기
-    removeDoneList: (event) => {
-        event.target.parentNode.removeChild(event.target);
+        });
     },
 
     // textField 비우기
@@ -151,59 +124,40 @@ const interaction = {
     submit: (event) => {
         event.preventDefault();
 
-        list.addToPendingList(toDoInput.value);
-        paint.pendingList(toDoInput.value);
-
-        paint.listCount();
-        
-        paint.inputEmpty();
-
+        list.addToList(toDoInput.value);
         localStorageModel.save();
+
+        paint.updateList();
+        paint.listCount();
+        paint.inputEmpty();
     },
 
     // To do List 항목을 클릭했을 때
     click: (event) => {
         if (event.target.tagName == "IMG") return;
         const value = event.target.textContent; // innerHTML X
-        if (event.target.classList.contains(DONE_CLASS)) {
-            list.removeFromDoneList(value);
-            paint.removeDoneList(event);
-
-            list.addToPendingList(value);
-            paint.pendingList(value);
-        } else {
-            list.removeFromPendingList(value);
-            paint.removePendingList(event);
-
-            list.addToDoneList(value);
-            paint.doneList(value);
-        }
-
-        paint.listCount();
-
+        const isDone = event.target.classList.contains("item-done");
+        
+        list.updateList(value, isDone);
         localStorageModel.save();
+
+        paint.updateList();
+        paint.listCount();
     },
 
     // 쓰레기통 img 클릭했을 때
     imgClick: (event) => {
-        if (event.target.parentNode.classList.contains(PENDING_CLASS)) {
-            list.removeFromPendingList(event.target.parentNode.textContent);
-        } else {
-            list.removeFromDoneList(event.target.parentNode.textContent);
-        }
-        
-        event.target.parentNode.parentNode.removeChild(event.target.parentNode);
-        
-        paint.listCount();
-
+        const  value = event.target.parentNode.textContent;
+        list.removeFromList(value);
         localStorageModel.save();
+
+        paint.updateList();
+        paint.listCount();
     }
 }
 
-
 function init() {
-
-    localStorageModel.load();
+    paint.loadData();
     toDoForm.addEventListener("submit", interaction.submit);
     toDoButton.addEventListener("click", interaction.submit);
 }
