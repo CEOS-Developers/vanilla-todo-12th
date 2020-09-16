@@ -35,6 +35,10 @@ button{
 ul{
   display: flex;
 }
+
+span{
+  cursor: pointer;;
+}
 .container {
   width: 350px;
   height: 600px;
@@ -62,7 +66,9 @@ ul{
   padding: 0.5rem;
   overflow-y: scroll;
 }
-
+.completeList{
+  text-decoration: line-through;
+}
 .thirdRow{
   height:10vh;
   display: flex;
@@ -91,4 +97,9 @@ ul{
 }
 .trash{
   width: 1.5rem;
+  opacity: 0;
+  transition: 0.3s;
+}
+.trash:hover{
+  opacity: 1;
 }

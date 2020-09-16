@@ -25,6 +25,17 @@ function deleteToDo(event){
     saveToDos();
 }
 
+function deleteOnlyToDo(evnet){
+    const btn = event.target;
+    const li = btn.parentNode; // btn.parentNode가 innerHtml로 인해 button 이었다. list를 삭제해야 하므로 한번더 parentNode 설정
+    toDoList.removeChild(li);
+    const cleanToDos = toDos.filter(function(toDo){
+        return toDo.id !== parseInt(li.id);
+    });
+    toDos = cleanToDos;
+    saveToDos();
+}
+
 function deleteToComplete(event){
     console.log("delete check");
     const btn = event.target;
@@ -55,15 +66,16 @@ function saveComplete(){
     try{
         localStorage.setItem(COMPLETE_LS,JSON.stringify(toComplete));
     
-        let countNumber = toComplete.length;
-        console.log(countNumber); //현재 localStorage 속 개수 확인
-        count2.innerHTML=countNumber; //현재 개수를 알려주자
+        let countNumber2 = toComplete.length;
+        console.log(countNumber2); //현재 localStorage 속 개수 확인
+        count2.innerHTML=countNumber2; //현재 개수를 알려주자
 
     }catch(err){
         console.log("something wrong!");
     }
     
 }
+
 
 function moveComplete(text){
     //대기중에서 눌렸을때 실행 될 함수 1.대기중에서 delete, 2.완료에서 create,
@@ -84,9 +96,9 @@ function paintToComplete(text){
     delBtn.addEventListener("click",deleteToComplete);
     
     const span = document.createElement("span");
+    span.setAttribute("class","completeList");
     const newId = toComplete.length+1;
-    span.innerText=text;
-    
+    span.innerText=text;   
 
     li.appendChild(span);
     li.appendChild(delBtn);
@@ -116,7 +128,8 @@ function paintToDo(text){
 
     span.onclick=function(){
         moveComplete(text);
-    }
+        deleteOnlyToDo(event);
+    } 
 
     li.appendChild(span);
     li.appendChild(delBtn);
