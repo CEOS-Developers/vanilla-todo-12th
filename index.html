@@ -12,22 +12,26 @@
         <h3>대기중</h3>
         <span class="waiting__number">(0)</span>
       </div>
-      <div class="waiting__list list"></div>
+      <div class="waiting__list list">
+        <ul class="waiting__items"></ul>
+      </div>
       <div class="finished__header">
         <h3>완료됨</h3>
         <span class="finished__number">(0)</span>
       </div>
-      <div class="finished__list list"></div>
+      <div class="finished__list list">
+        <ul class="finished__items"></ul>
+      </div>
       <div class="input__container">
-        <div class="input__box">
-          <form>
+        <form class="toDo__form">
+          <div class="input__box">
             <input type="text" placeholder="새로운 할일 추가" />
-          </form>
-        </div>
-        <div class="input__icon">
-          <!--아이콘-->
-          <i class="fas fa-plus-circle"></i>
-        </div>
+          </div>
+          <div class="input__icon">
+            <!--아이콘-->
+            <i class="fas fa-plus-circle"></i>
+          </div>
+        </form>
       </div>
     </div>
     <script
