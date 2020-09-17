@@ -17,10 +17,12 @@ submitForm.addEventListener('submit', (e) => {
         const div = document.createElement('div');
         const span = document.createElement('span');
         span.textContent = textInput.value;
+        // div 안 span에 input 내용을 넣어줌
         span.style.display = 'inline-block';
         span.style.width = '250px';
         div.append(span);
 
+        // double click로 todo -> done 구현하는 event를 span에 적용
         span.addEventListener('dblclick', (e) => {
             console.log(e.target.parentNode.id);
             const parent = e.target.parentNode;
@@ -41,14 +43,16 @@ submitForm.addEventListener('submit', (e) => {
 
         console.log('div content', div.textContent);
         console.log(textInput.value);
-        count_todolist += 1;
-        todo.textContent = 'To do list (' + count_todolist + ')';
 
+        // 삭제 버튼 만들기
         const button_span = document.createElement('span');
         const button = document.createElement('button');
         button.textContent = 'delete';
+
+        // 버튼 동작 콜백함수
         button.addEventListener('click', (e) => {
             let div = e.target;
+            // 상위 div 테그를 찾는다.
             while (div.tagName !== 'DIV') div = div.parentNode;
             console.log(div);
             if (div.parentNode.id === 'todo-list') {
@@ -58,12 +62,19 @@ submitForm.addEventListener('submit', (e) => {
                 count_donelist -= 1;
                 done.textContent = 'Done list (' + count_donelist + ')';
             }
+            // 상위 div 테그 삭제
             div.parentNode.removeChild(div);
         });
+
         button_span.append(button);
         div.append(button_span);
         todolist.append(div);
+        // 버튼을 div테그에 넣고, todolist에 div를 넣는다.
         textInput.value = '';
+        // input text 초기화
+        count_todolist += 1;
+        todo.textContent = 'To do list (' + count_todolist + ')';
+        // todo에 새로운 할 일을 추가 했으므로 count 증가와 text 상태 업데이트
         console.log(todolist.textContent);
         console.log('completed');
     }

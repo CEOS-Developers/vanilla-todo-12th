@@ -43,7 +43,6 @@ p {
 .b {
     width: 50px;
     display: inline-block;
-    border: red;
     background-color: #16a085;
     border-radius: 13px;
     color: white;
@@ -53,20 +52,22 @@ p {
     transition-duration: 0.4s;
 }
 .b:hover {
-    background-color: white;
-    color: aqua;
+    background-color: rgb#082a4d;
+    color: red;
 }
 .b:active {
-    outline: white;
     background-color: rgb(99, 187, 187);
+}
+.b:visited {
+    background-color: #16a085;
+    color: white;
 }
 
 #todo-list,
 #done-list {
-    border: red solid 1px;
     width: 350px;
     height: 290px;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
     font: 1rem 'Fira Sans', sans-serif;
     font-weight: bold;
     padding: 5px;
@@ -76,11 +77,10 @@ p {
 .input-box {
     display: flex;
     margin-top: 2px;
-}
-.input-box > input {
-    border-radius: 5px;
+    display: inline-block;
     text-align: center;
 }
-.input-box > input:focus {
-    background-color: white;
+.input-box > input[type='text'] {
+    width: 200px;
+    border-radius: 5px;
 }
