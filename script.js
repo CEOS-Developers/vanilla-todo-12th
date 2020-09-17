@@ -7,11 +7,21 @@ const TODOS = "toDos"; //key for saving todos in local storage
 
 let toDos = [];
 let maxId = 0;
-
+let countWaiting = 0, countComplete = 0;
 let tmpType; //only for deleteToDo and moveToDo
 
 function saveToDos() {
     localStorage.setItem(TODOS, JSON.stringify(toDos));
+}
+
+function printCount() {
+    const countWaitingJs = document.querySelector("#count-waiting");
+    countWaitingJs.innerText = countWaiting;
+
+    const countCompleteJs = document.querySelector("#count-complete");
+    countCompleteJs.innerText = countComplete;
+
+    console.log(countWaiting, countComplete);
 }
 
 function deleteToDo(event){
@@ -19,8 +29,15 @@ function deleteToDo(event){
     const li = btn.parentNode;
     tmpType = li.parentNode.className;
     
-    if(tmpType === "list waiting"){ listWaitingJs.removeChild(li); } 
-    else{ listCompleteJs.removeChild(li); }
+    if(tmpType === "list waiting"){ 
+        listWaitingJs.removeChild(li);
+        countWaiting -= 1; 
+    } 
+    else{
+        listCompleteJs.removeChild(li);
+        countComplete -= 1;    
+    }
+    printCount();
    
     const cleanToDos = toDos.filter(function(toDo){
         return toDo.id !== parseInt(li.id);
@@ -34,8 +51,12 @@ function deleteToDo(event){
 function moveToDo(event){
     deleteToDo(event);
     const targetContent = event.target.innerText;
-    if(tmpType === "list waiting") { printToDo(targetContent, "comp"); }
-    else { printToDo(targetContent, "wait"); }
+    if(tmpType === "list waiting") {
+        printToDo(targetContent, "comp"); 
+    }
+    else { 
+        printToDo(targetContent, "wait");
+    }
 }
 
 function printToDo(content, type) {
@@ -53,8 +74,16 @@ function printToDo(content, type) {
     li.appendChild(delBtn);
     li.id = newId;
     
-    if(type === "wait") {listWaitingJs.appendChild(li);}
-    else {listCompleteJs.appendChild(li);}
+    if(type === "wait") {
+        listWaitingJs.appendChild(li);
+        countWaiting += 1;
+    }
+    else {
+        listCompleteJs.appendChild(li);
+        countComplete += 1;
+    }
+
+    printCount();
 
     const toDoObj = {
         content: content,
@@ -87,6 +116,7 @@ function handleSubmit(event) {
 }
 
 function init() {
+    printCount();
     loadList();
     if(maxId < toDos.length) maxId = toDos.length;
     inputJs.addEventListener("submit", handleSubmit);
