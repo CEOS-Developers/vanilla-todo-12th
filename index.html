@@ -7,7 +7,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      
+      <h2>대기중 (1)</h2>
+      <ul class="list waiting">
+        <li class="todo">
+          <p>세오스 과제 제출</p>
+          <button class="delete">버튼</button>
+        </li>
+      </ul>
+
+      <h2>완료됨 (2)</h2>
+      <ul class="list complete">
+        <li class="todo">
+          <p>소공 실습 제출</p>
+          <button class="delete">버튼</button>
+        </li>
+        <li class="todo">
+          <p>세오스 세션 참가</p>
+          <button class="delete">버튼</button>
+        </li>
+      </ul>
+
+      <form class="input">
+        <input id="todo-new" type="text" placeholder="새로운 할일 추가">
+        <input id="submit" type="submit" value="+">
+      </form>
+
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
