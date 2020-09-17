@@ -15,18 +15,14 @@ function saveToDos() {
 }
 
 function printCount() {
-    const countWaitingJs = document.querySelector("#count-waiting");
+    const countWaitingJs = document.querySelector("#count-waiting"),
+        countCompleteJs = document.querySelector("#count-complete");
     countWaitingJs.innerText = countWaiting;
-
-    const countCompleteJs = document.querySelector("#count-complete");
     countCompleteJs.innerText = countComplete;
-
-    console.log(countWaiting, countComplete);
 }
 
 function deleteToDo(event){
-    const btn = event.target;
-    const li = btn.parentNode;
+    const li = event.target.parentNode;
     tmpType = li.parentNode.className;
     
     if(tmpType === "list waiting"){ 
@@ -45,18 +41,14 @@ function deleteToDo(event){
     toDos = cleanToDos;
     saveToDos();
 
-    maxId += 1;
+    maxId += 1; //prevent ovelapping of id
 }
 
 function moveToDo(event){
     deleteToDo(event);
     const targetContent = event.target.innerText;
-    if(tmpType === "list waiting") {
-        printToDo(targetContent, "comp"); 
-    }
-    else { 
-        printToDo(targetContent, "wait");
-    }
+    if(tmpType === "list waiting") { printToDo(targetContent, "comp"); }
+    else { printToDo(targetContent, "wait");}
 }
 
 function printToDo(content, type) {
@@ -118,7 +110,6 @@ function handleSubmit(event) {
 function init() {
     printCount();
     loadList();
-    if(maxId < toDos.length) maxId = toDos.length;
     inputJs.addEventListener("submit", handleSubmit);
 }
 
