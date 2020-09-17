@@ -1,5 +1,6 @@
 const inputJs = document.querySelector(".input"),
     toDoNewJs = inputJs.querySelector("#todo-new"),
+    listJs = document.querySelector(".list");
     listWaitingJs = document.querySelector(".waiting"),
     listCompleteJs = document.querySelector(".complete");
 
@@ -11,13 +12,24 @@ function saveToDos() {
     localStorage.setItem(TODOS, JSON.stringify(toDos));
 }
 
+function deleteToDo(event){
+    const btn = event.target;
+    const li = btn.parentNode;
+    listJs.removeChild(li);
+    const cleanToDos = toDos.filter(function(toDo){
+        return toDo.id !== parseInt(li.id);
+    });
+    toDos = cleanToDos;
+    saveToDos();
+}
+
 function printToDo(content, type) {
     const li = document.createElement("li");
     li.setAttribute("class", "todo");
     const p = document.createElement("p");
     const delBtn = document.createElement("button");
     delBtn.setAttribute("class", "button delete");
-    //delBtn.addEventListener("click", deleteTodo);
+    delBtn.addEventListener("click", deleteToDo);
     const newId = toDos.length + 1;
 
     p.innerText = content;
