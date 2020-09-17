@@ -2,12 +2,32 @@ const toDoForm = document.querySelector(".toDo__form"),
   toDoInput = document.querySelector("input"),
   toDoWaitingItems = document.querySelector(".waiting__items"),
   toDoFinishedItems = document.querySelector(".finished__items"),
-  toDoInputIcon = document.querySelector(".input__icon");
+  toDoInputIcon = document.querySelector(".input__icon"),
+  waitingListCount = document.querySelector(".waiting__number"),
+  finishedListCount = document.querySelector(".finished__number");
 
 const TODO_LS = "toDos";
 
 //할일 목록을 담은 list
 let toDos = [];
+
+//리스트 별 할일의 개수를 센다.
+function updateCount() {
+  //wcnt : waitingList 할일 개수, fcnt : finishedList 할일 개수
+  let wcnt = 0,
+    fcnt = 0;
+  //리스트를 순환하며 개수를 센다.
+  toDos.forEach((toDo) => {
+    if (toDo.opt == 1) {
+      wcnt++;
+    } else {
+      fcnt++;
+    }
+  });
+  //개수를 웹페이지에 나타내기
+  waitingListCount.innerText = `(${wcnt})`;
+  finishedListCount.innerText = `(${fcnt})`;
+}
 
 function moveToDo(event) {
   //span : 이동시킬 할일
@@ -42,6 +62,7 @@ function deleteToDo(event) {
   const li = btn.parentNode;
   let opt, targetToDo;
 
+  //클릭된 할일이 어떤 상태인지 찾는다.
   toDos.forEach((toDo) => {
     if (toDo.id == li.id) {
       opt = toDo.opt;
@@ -63,6 +84,8 @@ function deleteToDo(event) {
 function saveToDos() {
   //toDos list를 로컬스토리지에 저장한다.
   localStorage.setItem(TODO_LS, JSON.stringify(toDos));
+  //할일 목록의 개수를 업데이트 한다.
+  updateCount();
 }
 
 function printToDo(text, opt) {
