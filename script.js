@@ -49,6 +49,13 @@ function loadList() {
     }
 }
 
+function handleSubmit(event) {
+    event.preventDefault();
+    const tempValue = toDoNewJs.value;
+    printToDo(tempValue, "wait");
+    toDoNewJs.value = "";
+}
+
 function init() {
 
     /*for testing*/
@@ -61,6 +68,7 @@ function init() {
     localStorage.setItem(TODOS, JSON.stringify(forTest));
 
     loadList();
+    inputJs.addEventListener("submit", handleSubmit);
 }
 
 init();
