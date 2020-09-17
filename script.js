@@ -63,7 +63,7 @@ function printToDo(content, type) {
 
     toDos.push(toDoObj);
     saveToDos();
-    
+
     maxId += 1;
 }
 
@@ -86,19 +86,8 @@ function handleSubmit(event) {
 }
 
 function init() {
-
-    /*for testing*/
-    const forTest = [
-        {content: "a", id: 0, type: "wait"},
-        {content: "b", id: 1, type: "wait"},
-        {content: "c", id: 2, type: "wait"},
-        {content: "d", id: 3, type: "comp"},
-    ]
-    localStorage.setItem(TODOS, JSON.stringify(forTest));
-
     loadList();
     if(maxId < toDos.length) maxId = toDos.length;
-
     inputJs.addEventListener("submit", handleSubmit);
 }
 
