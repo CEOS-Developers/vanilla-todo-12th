@@ -30,14 +30,20 @@ function updateCount() {
 }
 
 function moveToDo(event) {
-  //span : 이동시킬 할일
-  const span = event.target.parentNode;
+  let target;
+  //target: 할 일이 담긴 <li> 태그
+  // <li> 태그를 선택하기 위함
+  if (event.target.tagName == "SPAN") target = event.target.parentNode;
+  if (event.target.tagName == "LI") target = event.target;
+  //쓰레기통이 클릭됐을 시 무시
+  if (event.target.tagName == "BUTTON") return;
+
   let opt, targetToDo;
 
   //opt : 1-> waiting , 2 -> finished
   //클릭된 할일이 어떤 상태인지 찾는다.
   toDos.forEach((toDo) => {
-    if (toDo.id == span.id) {
+    if (toDo.id == target.id) {
       opt = toDo.opt;
       targetToDo = toDo;
     }
@@ -46,10 +52,10 @@ function moveToDo(event) {
   //할일의 상태에 따라 해당하는 리스트에 추가한다.
   if (parseInt(opt) == 1) {
     targetToDo.opt = 2;
-    toDoFinishedItems.append(span);
+    toDoFinishedItems.append(target);
   } else {
     targetToDo.opt = 1;
-    toDoWaitingItems.append(span);
+    toDoWaitingItems.append(target);
   }
 
   //할일 상태 업데이트
@@ -99,7 +105,7 @@ function printToDo(text, opt) {
   delBtn.innerText = "🗑";
   //삭제 버튼 클릭시 deleteToDo 함수 호출
   delBtn.addEventListener("click", deleteToDo);
-  span.addEventListener("click", moveToDo);
+  li.addEventListener("click", moveToDo);
 
   //휴지통 이모티콘이 나타나게 한다.
   li.addEventListener("mouseenter", () => {
