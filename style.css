@@ -26,6 +26,7 @@ button,
 ul,
 p {
   all: unset;
+  font-family: 'MaplestoryOTFBold';
 }
 
 button{
@@ -35,9 +36,13 @@ button{
 ul{
   display: flex;
 }
+h3{
+  font-family: 'MaplestoryOTFBold';
+}
 
 span{
-  cursor: pointer;;
+  cursor: pointer;
+  font-family: 'MaplestoryOTFBold';
 }
 .container {
   width: 350px;
@@ -68,6 +73,7 @@ span{
 }
 .completeList{
   text-decoration: line-through;
+  color: gray;
 }
 .thirdRow{
   height:10vh;
@@ -103,3 +109,11 @@ span{
 .trash:hover{
   opacity: 1;
 }
+
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+            
