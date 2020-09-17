@@ -83,3 +83,21 @@ ul {
 #todo-new::placeholder{
   color: rgba(0, 0, 0, 0.2);
 }
+
+.delete{
+  background: url("img/bin.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  width: 20px;
+  height: 20px;
+
+  opacity: 0;
+  
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.delete:hover{
+  opacity: 1;
+}
