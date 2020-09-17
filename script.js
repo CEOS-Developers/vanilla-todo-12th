@@ -23,10 +23,17 @@ function deleteToDo(event){
     saveToDos();
 }
 
+function moveToDo(event){
+    deleteToDo(event);
+    const targetContent = event.target.innerText;
+    printToDo(targetContent, "comp");
+}
+
 function printToDo(content, type) {
     const li = document.createElement("li");
     li.setAttribute("class", "todo");
     const p = document.createElement("p");
+    p.addEventListener("click",moveToDo);
     const delBtn = document.createElement("button");
     delBtn.setAttribute("class", "button delete");
     delBtn.addEventListener("click", deleteToDo);
