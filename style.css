@@ -22,14 +22,36 @@ body {
 }
 
 /* input, */
-button,
+/* button, */
 ul,
+li,
 p {
   all: unset;
 }
 
-ul {
+li {
+  /* width: 100% */
   padding: 2px 5px;
+}
+
+button {
+  /* padding: 10px 10px; */
+  width: 4vw;
+  height: 5vh;
+  margin-left: 10px;
+  padding-left: 3.5%;
+
+  background-color: #2ec1ac;
+  color: white;
+  font-size: 12px;
+  border-radius: 75px;
+  border: none;
+  outline: 0;
+  line-height: 4vh;
+  
+  display: inline-flex;
+  align-content: center;
+
 }
 
 .container {
@@ -64,22 +86,49 @@ ul {
   flex-grow: 8;
   padding: 10px 10px;
 
+  overflow: scroll;
+  overflow-x: hidden;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
 .add {
+  /* flex-grow: 0.5; */
   flex-grow: 0.5;
-  padding: 10px 10px;
+  padding: 0 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   /* border-top: 1px solid black; */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
 
-/* .add_input {
-  margin: 1px;
-  border: black;
-  border-color: black;
-  background-color: white;
-} */
+#add_input {
+  /* display: inline-flex; */
+  width: 100%;
+  align-items: stretch;
+}
+
+.listbox button {
+  width: 5%;
+  height: 80%;
+
+  display: inline-flex;
+}
+
+.listbox img {
+  width: 20px;
+  height: 20px;
+}
+
+.listbox {
+  display: inline-flex;
+  align-items: center;
+}
+
+.listbox li {
+  width: 88%;
+}

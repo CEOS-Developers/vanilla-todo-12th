@@ -8,20 +8,24 @@
   </head>
   <body>
     <div class="container">
-        <div class="wait">대기중</div>
-        <div class="list">
-          <ul>list 1</ul>
-          <ul>list 2</ul>          
-          <ul>list 3</ul>
-        </div>
-        <div class="complete">완료됨</div>
-        <div class="list">
-          <ul>list 1</ul>
-          <ul>list 2</ul>          
-          <ul>list 3</ul>
-        </div>
+        <div class="wait" id="waitNum"></div>
+        <ul class="list" id="waitList">
+          <div class="listbox">
+            <li class="waiting" onclick="move(this)">list 1</li>
+            <img src="./img/bin.png" alt="" onclick="deleteList()">
+          </div>
+            <li class="waiting" onclick="move(this)">list 2</li>          
+            <li class="waiting" onclick="move(this)">list 3</li>
+        </ul>  
+        <div class="complete">완료됨 (0)</div>
+        <ul class="list" id="completeList">
+          <li class="compted" onclick="move(this)">list 1</li>
+          <li class="compted" onclick="move(this)">list 2</li>          
+          <li class="compted" onclick="move(this)">list 3</li>
+        </ul>
         <div class="add">
-          <input type="text" class="add_input" value="새로운 할일 추가">
+          <input type="text" id="add_input" value="새로운 할일 추가">
+          <button type="button">+</button>
         </div>
     </div>
   </body>
