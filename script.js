@@ -6,6 +6,7 @@ const inputJs = document.querySelector(".input"),
 const TODOS = "toDos"; //key for saving todos in local storage
 
 let toDos = [];
+let maxId = 0;
 
 function saveToDos() {
     localStorage.setItem(TODOS, JSON.stringify(toDos));
@@ -26,6 +27,8 @@ function deleteToDo(event){
     });
     toDos = cleanToDos;
     saveToDos();
+
+    maxId += 1;
 }
 
 function moveToDo(event){
@@ -42,7 +45,7 @@ function printToDo(content, type) {
     const delBtn = document.createElement("button");
     delBtn.setAttribute("class", "button delete");
     delBtn.addEventListener("click", deleteToDo);
-    const newId = toDos.length + 1;
+    const newId = maxId + 1;
 
     p.innerText = content;
     li.appendChild(p);
@@ -60,6 +63,8 @@ function printToDo(content, type) {
 
     toDos.push(toDoObj);
     saveToDos();
+    
+    maxId += 1;
 }
 
 function loadList() {
@@ -92,6 +97,8 @@ function init() {
     localStorage.setItem(TODOS, JSON.stringify(forTest));
 
     loadList();
+    if(maxId < toDos.length) maxId = toDos.length;
+
     inputJs.addEventListener("submit", handleSubmit);
 }
 
