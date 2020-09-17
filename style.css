@@ -47,6 +47,12 @@ p {
   background: white;
 }
 
+h2{
+  font-size: 19.2px;
+  padding: 0px 15px;
+  margin: 16px 0px;
+}
+
 ul {
   list-style: none;
 }
