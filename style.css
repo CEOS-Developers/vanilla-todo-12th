@@ -58,10 +58,25 @@ ul {
 }
 
 .list {
-  display: flex;
   flex-direction: column;
   flex: 1;
+  
   overflow-y: scroll;
+}
+
+.todo {
+  display: flex;
+
+  padding: 3px 15px;
+}
+
+.todo p{
+  flex: 1;
+}
+
+.complete p{
+  text-decoration: line-through;
+  color: #808080;
 }
 
 .input{
