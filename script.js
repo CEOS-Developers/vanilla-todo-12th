@@ -8,6 +8,8 @@ const TODOS = "toDos"; //key for saving todos in local storage
 let toDos = [];
 let maxId = 0;
 
+let tmpType; //only for deleteToDo and moveToDo
+
 function saveToDos() {
     localStorage.setItem(TODOS, JSON.stringify(toDos));
 }
@@ -15,12 +17,10 @@ function saveToDos() {
 function deleteToDo(event){
     const btn = event.target;
     const li = btn.parentNode;
+    tmpType = li.parentNode.className;
     
-    if(li.parentNode.className === "list waiting"){
-        listWaitingJs.removeChild(li);
-    } else{
-        listCompleteJs.removeChild(li);
-    }
+    if(tmpType === "list waiting"){ listWaitingJs.removeChild(li); } 
+    else{ listCompleteJs.removeChild(li); }
    
     const cleanToDos = toDos.filter(function(toDo){
         return toDo.id !== parseInt(li.id);
@@ -34,7 +34,8 @@ function deleteToDo(event){
 function moveToDo(event){
     deleteToDo(event);
     const targetContent = event.target.innerText;
-    printToDo(targetContent, "comp");
+    if(tmpType === "list waiting") { printToDo(targetContent, "comp"); }
+    else { printToDo(targetContent, "wait"); }
 }
 
 function printToDo(content, type) {
