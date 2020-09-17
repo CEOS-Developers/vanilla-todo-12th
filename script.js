@@ -1,6 +1,5 @@
 const inputJs = document.querySelector(".input"),
     toDoNewJs = inputJs.querySelector("#todo-new"),
-    listJs = document.querySelector(".list");
     listWaitingJs = document.querySelector(".waiting"),
     listCompleteJs = document.querySelector(".complete");
 
@@ -15,7 +14,13 @@ function saveToDos() {
 function deleteToDo(event){
     const btn = event.target;
     const li = btn.parentNode;
-    listJs.removeChild(li);
+    
+    if(li.parentNode.className === "list waiting"){
+        listWaitingJs.removeChild(li);
+    } else{
+        listCompleteJs.removeChild(li);
+    }
+   
     const cleanToDos = toDos.filter(function(toDo){
         return toDo.id !== parseInt(li.id);
     });
