@@ -110,6 +110,6 @@ ul {
   transition-duration: 0.5s;
 }
 
-.delete:hover{
+.todo:hover .delete{
   opacity: 1;
 }
