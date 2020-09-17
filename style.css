@@ -38,7 +38,6 @@ p {
 
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
     background: white;
-    padding: 8px;
 }
 
 .b {
@@ -62,16 +61,26 @@ p {
     background-color: aqua;
 }
 
-.todo-list,
-.done-list {
+#todo-list,
+#done-list {
     border: red solid 1px;
-    width: 340px;
+    width: 350px;
     height: 290px;
     margin-bottom: 2px;
     font: 1rem 'Fira Sans', sans-serif;
+    font-weight: bold;
+    padding: 5px;
 }
 
 .input-box {
     display: flex;
     margin-top: 2px;
+}
+.input-box > input {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+.input-box > input:focus {
+    background-color: white;
 }
