@@ -3,9 +3,24 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: 'Cafe24Ohsquare';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+          
+          
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  
 }
 
 body {
@@ -27,12 +42,36 @@ ul,
 p {
   all: unset;
 }
+ul{
+  padding-left:10px;
+
+}
+
+li{
+
+  font-family: 'Cafe24Ohsquare';
+  display:flex;
+  align-items:center;
+  padding: 15px;
+  font-size:1rem;
+}
+
+li>deleteBtn{
+  background-image:url("img/bin.png") ;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+
+}
 
 h2 {
   /* text-align: center; */
   padding: 0 15px;
   font-size: 1.2rem;
+  font-family: 'NEXON Lv1 Gothic OTF';
 }
+
+
 
 .container {
   width: 350px;
@@ -51,8 +90,8 @@ h2 {
   padding: 8px;
   flex-direction: row;
   align-items: stretch;
-
   display:flex;
+  font-family: 'NEXON Lv1 Gothic OTF';
 
 }
 
@@ -61,13 +100,11 @@ h2 {
   border-radius: 10px;
   padding: 0.2px;
   margin-right: 5px;
-  
   text-align: center;
   font-size: 1em;
-  
-
 
 }
+
 #addButton{
   width : 33px;
   height : 33px;
@@ -78,7 +115,8 @@ h2 {
 
   background-color: #2ec1ac;
   -webkit-text-fill-color: white;
+}
 
-
-
+.label{
+  flex-grow: 1; /*st*/
 }
