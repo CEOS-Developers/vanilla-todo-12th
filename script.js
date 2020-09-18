@@ -34,6 +34,9 @@ function addList (e) {
 
             document.getElementById("add_input").value = '';
             checkListNum();
+
+            // localStorage.setItem("waiting", listbox);
+            // console.log('localStorage : ', localStorage);
         }
     }
 }
@@ -62,6 +65,10 @@ function checkListNum() {
     document.getElementsByClassName("wait")[0].innerHTML = `대기중 (${waitingNum.length})`;
     document.getElementsByClassName("complete")[0].innerHTML = `완료됨 (${completeNum.length})`;
     // 다른 함수가 작동 할 때마다 이 함수를 동작하여 업데이트 해주어야 한다.
+}
+
+function storeLocal() {
+
 }
 
 checkListNum();

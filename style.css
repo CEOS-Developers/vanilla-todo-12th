@@ -6,7 +6,6 @@ body {
 * {
   box-sizing: border-box;
   font-family: 'ImcreSoojin';
-  /* font-weight: bold; */
 }
 
 @font-face {
@@ -39,31 +38,31 @@ p {
 }
 
 li {
-  /* width: 100% */
   padding: 2px 5px;
 }
 
 button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많은듯 하다 */
-  /* padding: 10px 10px; */
-  /* width: 2.5vw;
-  height: 5.2vh; */
+  /* button */
   width: 40px;
   height: 35px;
   margin-left: 10px;
-  padding-left: 15px;
-  font-weight: bold;
 
   background-color: #2ec1ac;
   color: white;
-  font-size: 12px;
+
   border-radius: 50%;
   border: none;
   outline: 0;
-  line-height: 30px;
-  
+
   display: inline-flex;
-  /* align-content: center; */
   text-align: center;
+
+
+  /* text */
+  padding-left: 15px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 30px;
 
 }
 
@@ -79,26 +78,27 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   background: white;
 }
 
-/* .inner-container {
-  height: 100%;
-  flex-direction: column; 
-  display: flex;
-} */
-
+/* 대기중 개수 */
 .wait {
-  /* flex-grow: 1; */
   padding: 15px 15px 5px 15px;
   font-weight: bold;
   font-size: 17px;
 }
 
+/* 완료 개수 */
 .complete {
-  /* flex-grow: 1; */
   padding: 15px 15px 5px 15px;
   font-weight: bold;
   font-size: 17px;
 }
 
+/* 완료 시 선긋기 */
+#completeList {
+  text-decoration: line-through;
+  color: #a7a7a7;
+}
+
+/* todo 목록 */
 .list {
   height: 10px;     /* list div의 크기 고정 위해 */
   flex-grow: 8;
@@ -107,34 +107,37 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   overflow: scroll;
   overflow-x: hidden;
 
+  /* inner items */
   display: flex;
   flex-direction: column;
-  /* align-items: stretch; */
 }
 
+/* 할 일 추가 */
 .add {
-  /* flex-grow: 0.5; */
-  flex-grow: 0.8;
-  padding: 0 10px;
   display: inline-flex;
+  flex-grow: 0.8;
+
   justify-content: center;
   align-items: center;
 
-  /* border-top: 1px solid black; */
+  padding: 0 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
 
+/* 할 일 추가 input */
 #add_input {
-  /* display: inline-flex; */
+  /* input */
   width: 100%;
   height: 70%;
-  align-items: stretch;
-  text-align: center;
-
+  border-width: 0.7px;
   border-radius: 20px;
   border-color: #c4c4c4;
-  /* border: #c4c4c4; */
   outline: none;
+
+  align-items: stretch;
+
+  /* text */
+  text-align: center;
   font-size: 15px;
 }
 
@@ -142,13 +145,7 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   color: #c4c4c4;
 }
 
-.listbox button {
-  width: 5%;
-  height: 80%;
-
-  display: inline-flex;
-}
-
+/* trashcan image */
 .listbox img {
   width: 20px;
   height: 20px;
@@ -161,6 +158,7 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   opacity: 1;
 }
 
+/* todo */
 .listbox {
   display: inline-flex;
   align-items: center;
@@ -174,7 +172,3 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   width: 88%;
 }
 
-#completeList {
-  text-decoration: line-through;
-  color: #a7a7a7;
-}
