@@ -12,20 +12,26 @@
         <ul class="list" id="waitList">
           <div class="listbox">
             <li class="waiting" onclick="move(this)">list 1</li>
-            <img src="./img/bin.png" alt="" onclick="deleteList()">
+            <img src="./img/bin.png" alt="" onclick="deleteList(this)">
           </div>
-            <li class="waiting" onclick="move(this)">list 2</li>          
+          <div class="listbox">
+            <li class="waiting" onclick="move(this)">list 2</li>    
+            <img src="./img/bin.png" alt="" onclick="deleteList(this)">      
+          </div>
+          <div class="listbox">
             <li class="waiting" onclick="move(this)">list 3</li>
+            <img src="./img/bin.png" alt="" onclick="deleteList(this)">
+          </div>
         </ul>  
         <div class="complete">완료됨 (0)</div>
         <ul class="list" id="completeList">
-          <li class="compted" onclick="move(this)">list 1</li>
+          <!-- <li class="compted" onclick="move(this)">list 1</li>
           <li class="compted" onclick="move(this)">list 2</li>          
-          <li class="compted" onclick="move(this)">list 3</li>
+          <li class="compted" onclick="move(this)">list 3</li> -->
         </ul>
         <div class="add">
-          <input type="text" id="add_input" value="새로운 할일 추가">
-          <button type="button">+</button>
+          <input type="text" id="add_input" placeholder="새로운 할일 추가" onkeyup="addList(event)">
+          <button type="button" onclick="addList('click')">+</button>
         </div>
     </div>
   </body>

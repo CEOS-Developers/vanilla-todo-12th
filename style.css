@@ -96,7 +96,7 @@ button {
 
 .add {
   /* flex-grow: 0.5; */
-  flex-grow: 0.5;
+  flex-grow: 0.8;
   padding: 0 10px;
   display: inline-flex;
   justify-content: center;
@@ -109,7 +109,19 @@ button {
 #add_input {
   /* display: inline-flex; */
   width: 100%;
+  height: 70%;
   align-items: stretch;
+  text-align: center;
+
+  border-radius: 20px;
+  border-color: #c4c4c4;
+  /* border: #c4c4c4; */
+  outline: none;
+  font-size: 15px;
+}
+
+#add_input::placeholder {
+  color: #c4c4c4;
 }
 
 .listbox button {

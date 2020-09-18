@@ -1,48 +1,67 @@
 let waitArr = []
 let completedArr = []
 
-let addList = document.getElementById("add_input")
-// let deleteList = document.getElementsByTagName("li")
-// let waitList = 
+// let addList = document.getElementById("add_input")
 
-addList.addEventListener("keyup", function(event) {
-    if (event.keyCode == 13) {
+
+
+function addList (e) {
+    if (e == 'click' || e.keyCode == 13) {
         // event.preventDefault();
         let todo = document.getElementById('add_input').value;
         // waitArr.push(todo);
 
+        let listbox = document.createElement('div');
+        listbox.className = 'listbox';
+        
         let list = document.createElement('li');
         list.className = "waiting";
         list.innerHTML = todo;
         list.setAttribute("onclick", "move(this)");
+
+        let trash = document.createElement('img');
+        trash.src = "./img/bin.png";
+        trash.alt = "";
+        trash.setAttribute("onclick", "deleteList(this)");
+
+        listbox.appendChild(list);
+        listbox.appendChild(trash);
         // list.addEventListener("click", move(this))
-        
-        document.getElementById('waitList').append(list);
 
-        console.log('waitArr = ', waitArr);
+        document.getElementById('waitList').append(listbox);
 
+        // console.log('waitArr = ', waitArr);
+        document.getElementById("add_input").value = '';
         document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
     }
-})
+}
 
 function move(li) {
     if (li.className == "waiting") {
         li.className = "compted";
-        document.getElementById("completeList").appendChild(li);
+        // console.log('parentNode : ', li.parentNode);
+        document.getElementById("completeList").appendChild(li.parentNode);
+        // document.getElementById("completeList").appendChild(li);
     } else {
         li.className = "waiting";
-        document.getElementById("waitList").appendChild(li);
+        document.getElementById("waitList").appendChild(li.parentNode);
     }
+
+    document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
+
     // li.remove();
     // console.log(li);
 }
 
-function deleteList() {
-    console.log('CLICKED !!!');
+function deleteList(li) {
+    li.parentNode.remove();
 }
 
 let waitingNum = document.getElementsByClassName("waiting")
 document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
+
+
+
 // for(let i=0; i<deleteList.length; i++) {
 //     deleteList[i].addEventListener("click", function(event) {
 //         // let el = document.getElementById
@@ -84,3 +103,25 @@ document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})
 // }
 
 // makelist();
+
+
+
+
+// addList.addEventListener("keyup", function(event) {
+//     if (event.keyCode == 13) {
+//         // event.preventDefault();
+//         let todo = document.getElementById('add_input').value;
+//         // waitArr.push(todo);
+
+//         let list = document.createElement('li');
+//         list.className = "waiting";
+//         list.innerHTML = todo;
+//         list.setAttribute("onclick", "move(this)");
+        
+//         document.getElementById('waitList').append(list);
+
+//         console.log('waitArr = ', waitArr);
+
+//         document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
+//     }
+// })
