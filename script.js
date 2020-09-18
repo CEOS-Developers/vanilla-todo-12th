@@ -4,9 +4,11 @@ const textInput = document.querySelector('input'); // 추가 할 내용
 const todolist = document.querySelector('#todo-list'); // 버튼을 눌렀을 때 추가되는 곳
 const todo = document.querySelector('.todo');
 const done = document.querySelector('.done');
-const Donelist = document.querySelector('#done-list');
+const doneList = document.querySelector('#done-list');
 var count_todolist = 0;
 var count_donelist = 0;
+
+var localStorage = [];
 
 // 폼 제출 비동기 함수
 submitForm.addEventListener('submit', (e) => {
@@ -28,7 +30,7 @@ submitForm.addEventListener('submit', (e) => {
             console.log(e.target.parentNode.id);
             const parent = e.target.parentNode;
             if (parent.parentNode.id === 'todo-list') {
-                Donelist.append(e.target.parentNode);
+                doneList.append(e.target.parentNode);
                 span.style.textDecoration = 'line-through';
                 count_donelist += 1;
                 count_todolist -= 1;
@@ -79,5 +81,7 @@ submitForm.addEventListener('submit', (e) => {
         // todo에 새로운 할 일을 추가 했으므로 count 증가와 text 상태 업데이트
         console.log(todolist.textContent);
         console.log('completed');
+        localStorage.setItem(span.textContent, 1);
+        console.log(localStorage);
     }
 });

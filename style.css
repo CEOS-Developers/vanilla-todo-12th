@@ -64,6 +64,8 @@ p {
     color: white;
 }
 
+#todo-header,
+#done-header,
 #todo-list,
 #done-list {
     width: 350px;
@@ -71,6 +73,10 @@ p {
     font: 1.25rem 'Fira Sans', sans-serif;
     font-weight: bold;
     padding: 10px 15px;
+}
+
+#todo-list,
+#done-list {
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -87,8 +93,13 @@ p {
     text-align: center;
 }
 .input-box > input[type='text'] {
-    width: 200px;
+    width: 250px;
     border: 2px solid rgb(134, 233, 216);
+    font-size: 1rem 'FiraSans';
+    font-weight: 600;
     padding: 3px;
     border-radius: 5px;
+}
+.input-box > input[type='submit'] {
+    padding-bottom: 5px;
 }
