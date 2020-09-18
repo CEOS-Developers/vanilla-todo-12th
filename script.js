@@ -44,8 +44,8 @@ submitForm.addEventListener('submit', (e) => {
             done.textContent = 'Done list (' + count_donelist + ')';
         });
 
-        console.log('div content', div.textContent);
-        console.log(textInput.value);
+        // console.log('div content', div.textContent);
+        // console.log(textInput.value);
 
         // 삭제 버튼 만들기
         const button_span = document.createElement('span');
@@ -79,9 +79,9 @@ submitForm.addEventListener('submit', (e) => {
         count_todolist += 1;
         todo.textContent = 'To do list (' + count_todolist + ')';
         // todo에 새로운 할 일을 추가 했으므로 count 증가와 text 상태 업데이트
-        console.log(todolist.textContent);
-        console.log('completed');
+        //console.log(todolist.textContent);
+        //console.log('completed');
         localStorage.setItem(span.textContent, 1);
-        console.log(localStorage);
+        //console.log(localStorage);
     }
 });
