@@ -3,7 +3,7 @@ const taskInput = document.getElementById("todoInput");
 const addTaskBtn = document.getElementById("addButton"); //왜 안됌>?
 const pendingTasksList = document.getElementById("todosPendingList");
 const completedTasksList = document.getElementById("todosFinishedList");
-
+let cnt1,cnt2;
 
 
 let createNewTask = function (todo) {
@@ -36,31 +36,49 @@ let addTask = function () {
     console.log(newTask)
     console.log(pendingTasksList)
     pendingTasksList.appendChild(newTask);
+    total=pendingTasksList.childElementCount
+    document.getElementById('pendingTasksNumber').innerHTML=total;
     bindTaskEvents(newTask, completedTask);
 
     taskInput.value = "";
 }
 
+let tasksCount=function(){
+    console.log('count tasks');
+    document.getElementById('finishedTasksNumber').innerHTML=completedTasksList.childElementCount;
+    document.getElementById('pendingTasksNumber').innerHTML=pendingTasksList.childElementCount;
+
+}
 
 let deleteTask = function () {
     console.log("delete task");
+    total--;
 
     let tasksToDelete = this.parentNode;
     let ul = tasksToDelete.parentNode;
     ul.removeChild(tasksToDelete);
+
+    tasksCount();
 }
 
 let completedTask = function () {
     console.log("completed Task");
     let listItem = this.parentNode;
+    listItem.style.textDecoration="line-through"
     completedTasksList.appendChild(listItem);
     bindTaskEvents(listItem, pendingTask);
+
 }
 
 let pendingTask = function () {
     console.log("incomplete Task");
     let listItem = this.parentNode;
+    if(listItem.style.textDecoration=="line-through"){
+        listItem.style.textDecoration="none";
+    }
     pendingTasksList.appendChild(listItem);
+    //console.log("cnt",pendingTasksList.childElementCount)
+    
     bindTaskEvents(listItem, completedTask);
 }
 
@@ -95,9 +113,12 @@ let bindTaskEvents = function (taskListItem, statusHandler) {
 
     //if (deleteButton)
     deleteButton.onclick = deleteTask;
+    
     console.log('afterdelete');
     //클릭 시 넘어감
     changeStatus.onclick = statusHandler;
+ 
+    tasksCount();
 }
 
 
