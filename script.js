@@ -1,38 +1,33 @@
-let waitArr = []
-let completedArr = []
-
-// let addList = document.getElementById("add_input")
-
-
 
 function addList (e) {
     if (e == 'click' || e.keyCode == 13) {
-        // event.preventDefault();
-        let todo = document.getElementById('add_input').value;
-        // waitArr.push(todo);
+        if (document.getElementById("add_input").value != '') {
+         // event.preventDefault();
+            let todo = document.getElementById('add_input').value;
 
-        let listbox = document.createElement('div');
-        listbox.className = 'listbox';
-        
-        let list = document.createElement('li');
-        list.className = "waiting";
-        list.innerHTML = todo;
-        list.setAttribute("onclick", "move(this)");
+            let listbox = document.createElement('div');
+            listbox.className = 'listbox';
 
-        let trash = document.createElement('img');
-        trash.src = "./img/bin.png";
-        trash.alt = "";
-        trash.setAttribute("onclick", "deleteList(this)");
+            let list = document.createElement('li');
+            list.className = "waiting";
+            list.innerHTML = todo;
+            list.setAttribute("onclick", "move(this)");
 
-        listbox.appendChild(list);
-        listbox.appendChild(trash);
-        // list.addEventListener("click", move(this))
+            let trash = document.createElement('img');
+            trash.src = "./img/bin.png";
+            trash.alt = "";
+            trash.setAttribute("onclick", "deleteList(this)");
 
-        document.getElementById('waitList').append(listbox);
+            listbox.appendChild(list);
+            listbox.appendChild(trash);
 
-        // console.log('waitArr = ', waitArr);
-        document.getElementById("add_input").value = '';
-        document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
+            document.getElementById('waitList').append(listbox);
+
+            document.getElementById("add_input").value = '';
+
+            checkListNum();
+
+        }
     }
 }
 
@@ -47,7 +42,7 @@ function move(li) {
         document.getElementById("waitList").appendChild(li.parentNode);
     }
 
-    document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
+    checkListNum();
 
     // li.remove();
     // console.log(li);
@@ -55,10 +50,17 @@ function move(li) {
 
 function deleteList(li) {
     li.parentNode.remove();
+    checkListNum()
 }
 
-let waitingNum = document.getElementsByClassName("waiting")
-document.getElementById("waitNum").innerHTML = `대기중 (${waitingNum.length})`;
+function checkListNum() {
+    document.getElementsByClassName("wait")[0].innerHTML = `대기중 (${waitingNum.length})`;
+    document.getElementsByClassName("complete")[0].innerHTML = `완료됨 (${completeNum.length})`;
+}
+
+let waitingNum = document.getElementsByClassName("waiting");
+let completeNum = document.getElementsByClassName("compted");
+checkListNum();
 
 
 

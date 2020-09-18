@@ -6,6 +6,7 @@ body {
 * {
   box-sizing: border-box;
   font-family: sans-serif;
+  /* font-weight: bold; */
 }
 
 body {
@@ -34,23 +35,27 @@ li {
   padding: 2px 5px;
 }
 
-button {
+button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많은듯 하다 */
   /* padding: 10px 10px; */
-  width: 4vw;
-  height: 5vh;
+  /* width: 2.5vw;
+  height: 5.2vh; */
+  width: 40px;
+  height: 35px;
   margin-left: 10px;
-  padding-left: 3.5%;
+  padding-left: 4.5%;
+  font-weight: bold;
 
   background-color: #2ec1ac;
   color: white;
   font-size: 12px;
-  border-radius: 75px;
+  border-radius: 50%;
   border: none;
   outline: 0;
   line-height: 4vh;
   
   display: inline-flex;
-  align-content: center;
+  /* align-content: center; */
+  text-align: center;
 
 }
 
@@ -74,15 +79,20 @@ button {
 
 .wait {
   /* flex-grow: 1; */
-  padding: 10px 10px;
+  padding: 15px 15px 5px 15px;
+  font-weight: bold;
+  font-size: 17px;
 }
 
 .complete {
   /* flex-grow: 1; */
-  padding: 10px 10px;
+  padding: 15px 15px 5px 15px;
+  font-weight: bold;
+  font-size: 17px;
 }
 
 .list {
+  height: 10px;     /* list div의 크기 고정 위해 */
   flex-grow: 8;
   padding: 10px 10px;
 
@@ -91,7 +101,7 @@ button {
 
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  /* align-items: stretch; */
 }
 
 .add {
@@ -143,4 +153,9 @@ button {
 
 .listbox li {
   width: 88%;
+}
+
+#completeList {
+  text-decoration: line-through;
+  color: #a7a7a7;
 }
