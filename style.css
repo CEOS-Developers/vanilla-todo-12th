@@ -43,12 +43,11 @@ p {
   all: unset;
 }
 ul{
-  padding-left:10px;
+  height: 45vw;
 
 }
 
 li{
-
   font-family: 'Cafe24Ohsquare';
   display:flex;
   align-items:center;
@@ -71,8 +70,6 @@ h2 {
   font-family: 'NEXON Lv1 Gothic OTF';
 }
 
-
-
 .container {
   width: 350px;
   height: 600px;
@@ -92,8 +89,12 @@ h2 {
   align-items: stretch;
   display:flex;
   font-family: 'NEXON Lv1 Gothic OTF';
+  margin-top: auto;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
 
 }
+
+
 
 #todoInput{
   flex: 1; /*specify it for a child if you wnat it to fill the remaining horizontal spaces*/
@@ -119,4 +120,11 @@ h2 {
 
 .label{
   flex-grow: 1; /*st*/
+}
+
+
+.finished-list-item-fall{
+  transition: all 0.3s ease-out;
+  transform: translateY(12rem) rotateZ(10deg);
+  opacity:0;
 }
