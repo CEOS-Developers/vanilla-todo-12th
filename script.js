@@ -7,6 +7,7 @@ function addList (e) {
 
             let listbox = document.createElement('div');
             listbox.className = 'listbox';
+            // listbox.setAttribute("onmouseover", "fadein(this)");
 
             let list = document.createElement('li');
             list.className = "waiting";
@@ -50,7 +51,7 @@ function move(li) {
 
 function deleteList(li) {
     li.parentNode.remove();
-    checkListNum()
+    checkListNum();
 }
 
 function checkListNum() {
@@ -61,6 +62,11 @@ function checkListNum() {
 let waitingNum = document.getElementsByClassName("waiting");
 let completeNum = document.getElementsByClassName("compted");
 checkListNum();
+
+// function fadein(el) {
+//     el.childNodes[1].opacity = 1;
+//     console.log(el.childNodes[1].opacity);
+// }
 
 
 

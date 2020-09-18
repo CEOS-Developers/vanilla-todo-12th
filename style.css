@@ -144,11 +144,25 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
 .listbox img {
   width: 20px;
   height: 20px;
+  
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.listbox img:hover {
+  opacity: 1;
 }
 
 .listbox {
   display: inline-flex;
   align-items: center;
+
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.listbox:hover{
+  opacity: 1;
 }
 
 .listbox li {
