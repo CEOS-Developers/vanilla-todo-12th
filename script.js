@@ -18,11 +18,12 @@ submitForm.addEventListener('submit', (e) => {
         const span = document.createElement('span');
         span.textContent = textInput.value;
         // div 안 span에 input 내용을 넣어줌
+        span.classList.add('content');
         span.style.display = 'inline-block';
         span.style.width = '250px';
         div.append(span);
 
-        // double click로 todo -> done 구현하는 event를 span에 적용
+        // double click로 todo -> done, done -> todo 구현하는 event를 span에 적용
         span.addEventListener('dblclick', (e) => {
             console.log(e.target.parentNode.id);
             const parent = e.target.parentNode;
@@ -66,6 +67,7 @@ submitForm.addEventListener('submit', (e) => {
             div.parentNode.removeChild(div);
         });
 
+        button_span.classList.add('content');
         button_span.append(button);
         div.append(button_span);
         todolist.append(div);
