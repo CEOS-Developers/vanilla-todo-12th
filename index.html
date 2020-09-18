@@ -11,19 +11,25 @@
 <body>
   <div class="container">
     <h2> 대기중(
-      <span id="pendingingTasksNumber">0</span>
+      <span id="pendingTasksNumber">0</span>
       )
     </h2>
-    <div class = "todosPedningList"></div>
+    <ul id="todosPendingList">
+
+    </ul>
+  
     <h2> 완료됨(
       <span id="finishedTasksNumber">0</span>
       )
     </h2>
-    <div class = "FinishedTasksList">
-    </div>
+    <ul id = "todosFinishedList">
+    
+        
+    </ul>
+  
     <form class="inputNewTasks">
       <input id="todoInput" type="text" size="20" placeholder="새로운 할 일 추가">
-      <button type="submit" id="addButton">+</button>
+      <button id="addButton" type="submit">+</button>
     </form>
   </div>
   <script src="script.js"></script>
