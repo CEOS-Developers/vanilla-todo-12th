@@ -8,28 +8,11 @@
   </head>
   <body>
     <div class="container">
-        <div class="wait" id="waitNum"></div>
-        <ul class="list" id="waitList">
-          <!-- <div class="listbox">
-            <li class="waiting" onclick="move(this)">list 1</li>
-            <img src="./img/bin.png" alt="" onclick="deleteList(this)">
-          </div>
-          <div class="listbox">
-            <li class="waiting" onclick="move(this)">list 2</li>    
-            <img src="./img/bin.png" alt="" onclick="deleteList(this)">      
-          </div>
-          <div class="listbox">
-            <li class="waiting" onclick="move(this)">list 3</li>
-            <img src="./img/bin.png" alt="" onclick="deleteList(this)">
-          </div> -->
-        </ul>  
-        <div class="complete"></div>
-        <ul class="list" id="completeList">
-          <!-- <li class="compted" onclick="move(this)">list 1</li>
-          <li class="compted" onclick="move(this)">list 2</li>          
-          <li class="compted" onclick="move(this)">list 3</li> -->
-        </ul>
-        <div class="add">
+        <div class="wait"></div>        <!-- 대기중 ()-->
+        <ul class="list" id="waitList"></ul>      <!-- 할 일 목록 -->
+        <div class="complete"></div>        <!-- 완료됨 ()-->
+        <ul class="list" id="completeList"></ul>      <!-- 끝낸 일 목록 -->
+        <div class="add">     <!-- 할 일 입력 칸 -->
           <input type="text" id="add_input" placeholder="새로운 할일 추가" onkeyup="addList(event)">
           <button type="button" onclick="addList('click')">+</button>
         </div>

@@ -5,9 +5,17 @@ body {
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'ImcreSoojin';
   /* font-weight: bold; */
 }
+
+@font-face {
+  font-family: 'ImcreSoojin';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+          
 
 body {
   width: 100vw;
@@ -42,7 +50,7 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   width: 40px;
   height: 35px;
   margin-left: 10px;
-  padding-left: 4.5%;
+  padding-left: 15px;
   font-weight: bold;
 
   background-color: #2ec1ac;
@@ -51,7 +59,7 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
   border-radius: 50%;
   border: none;
   outline: 0;
-  line-height: 4vh;
+  line-height: 30px;
   
   display: inline-flex;
   /* align-content: center; */
@@ -156,12 +164,9 @@ button {   /* 조금만 UI를 수정해도 같이 무너지는 요소들이 많�
 .listbox {
   display: inline-flex;
   align-items: center;
-
-  opacity: 1;
-  transition: opacity 0.3s;
 }
 
-.listbox:hover{
+.listbox:hover > img{
   opacity: 1;
 }
 
