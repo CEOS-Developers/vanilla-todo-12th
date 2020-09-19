@@ -1,4 +1,4 @@
-const toDoForm = document.querySelector("form");
+const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector(".input-text");
 const toDoButton = toDoForm.querySelector(".input-button");
 

@@ -82,7 +82,7 @@ li {
   text-decoration: line-through; /* middle line */
 }
 
-.container-form {
+#todo-form {
   width: 100%;
   height: 50px;
 
@@ -132,6 +132,7 @@ li {
 img {
   display: none;
   width: 5%;
+  height: 5%;
   opacity: 0.8;
 }
 
