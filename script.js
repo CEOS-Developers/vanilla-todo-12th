@@ -19,9 +19,7 @@ todoListForm.addEventListener('submit', (e) => {
         const todoContent = document.createElement('span');
         todoContent.textContent = InputContent.value;
         // div 안 todoContent에 input 내용을 넣어줌
-        todoContent.classList.add('content');
-        todoContent.style.display = 'inline-block';
-        todoContent.style.width = '250px';
+        todoContent.classList.add('todolist-content');
         todo.append(todoContent);
 
         // double click로 todo -> done, done -> todo 구현하는 event를 todoContent에 적용
@@ -46,13 +44,16 @@ todoListForm.addEventListener('submit', (e) => {
         // 삭제 버튼 만들기
         const button_span = document.createElement('span');
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'delete';
+        const deleteImage = new Image();
+        deleteImage.className = 'delete-image';
+        deleteImage.src = './img/bin.png';
+        deleteButton.append(deleteImage);
 
         // 버튼 동작 콜백함수
         deleteButton.addEventListener('click', (e) => {
             let deleteTag = e.target; // 지울 테그 찾기 위한 변수
             // 상위 delete 테그를 찾는다.
-            while (deleteTag.tagName !== 'DIV') div = div.parentNode;
+            while (deleteTag.tagName !== 'DIV') deleteTag = deleteTag.parentNode;
 
             if (deleteTag.parentNode.id === 'todo-list') {
                 countTodoList -= 1;

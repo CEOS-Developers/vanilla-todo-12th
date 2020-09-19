@@ -40,7 +40,7 @@ p {
     background: white;
 }
 
-.b {
+.todo-button {
     width: 50px;
     display: inline-block;
     background-color: #16a085;
@@ -52,14 +52,14 @@ p {
     text-align: center;
     transition-duration: 0.4s;
 }
-.b:hover {
+.todo-button:hover {
     background-color: rgb#082a4d;
     color: red;
 }
-.b:active {
+.todo-button:active {
     background-color: rgb(99, 187, 187);
 }
-.b:visited {
+.todo-button:visited {
     background-color: #16a085;
     color: white;
 }
@@ -81,9 +81,11 @@ p {
     overflow-y: scroll;
 }
 
-.content {
+.todolist-content {
     font: 0.9rem 'Fira Sans', sans-serif;
     font-weight: 600;
+    display: inline-block;
+    width: 275px;
 }
 
 .input-box {
@@ -102,4 +104,9 @@ p {
 }
 .input-box > input[type='submit'] {
     padding-bottom: 5px;
+}
+
+.delete-image {
+    width: 1rem;
+    height: 1rem;
 }
