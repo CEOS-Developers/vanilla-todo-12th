@@ -2,20 +2,20 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector(".input-text");
 const toDoButton = toDoForm.querySelector(".input-button");
 
-const TODO_DB = "todo";
+const LOCAL_STORAGE_TODO_KEY = "todo";
 let toDoList = [];
 
 // localStorage 모델: 웹이 로드 될 때 기존 투두리스트를 가져오기 위함
-const localStorageModel = {
+const LocalStorageModel = {
     // localStorage에 저장
-    save: () => {
-        localStorage.setItem(TODO_DB, JSON.stringify(toDoList));
+    save() {
+        localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(toDoList));
     },
 
     // localStorage에서 로드
-    load: () => {
-        const loaded = localStorage.getItem(TODO_DB);
-        if (loaded !== null) {
+    load() {
+        const loaded = localStorage.getItem(LOCAL_STORAGE_TODO_KEY);
+        if (loaded) {
             const parsed = JSON.parse(loaded);
             toDoList = parsed;
         }
@@ -23,23 +23,18 @@ const localStorageModel = {
 }
 
 // List 모델
-const list = {
+const ListModel = {
     // 개수 계산
-    getCount: () => {
-        let pending = 0;
-        toDoList.forEach((item) => {
-            if (!item.done) {
-                pending++;
-            }
-        })
-        return {
-            pending: pending,
-            done: toDoList.length - pending
-        }
+    getPendingToDosCount() {
+        return toDoList.filter(item => !item.done).length
+    },
+
+    getDoneToDosCount() {
+        return toDoList.filter(item => item.done).length
     },
 
     // list 대기중 완료 토글
-    updateList: (value, isDone) => {
+    updateList(value, isDone) {
         const i = toDoList.findIndex((item) => {
             return item.text == value;
         })
@@ -47,7 +42,7 @@ const list = {
     },
 
     // toDoList 배열에 추가  -> submit 할 때
-    addToList: (value) => {
+    addToList(value) {
         let item = {
             "id": toDoList.length + 1,
             "text": value,
@@ -57,7 +52,7 @@ const list = {
     },
 
     // toDoList 배열에서 제거 -> 휴지통
-    removeFromList: (value) => {
+    removeFromList(value) {
         const i = toDoList.findIndex((item) => {
             return item.text == value;
         })
@@ -66,23 +61,23 @@ const list = {
 }
 
 // Paint 모델: 화면에 그리고 빼는 것과 관련
-const paint = {
+const PaintModel = {
     // 새로고침 화면 그리기
-    loadData: () => {
-        localStorageModel.load();
+    loadData() {
+        LocalStorageModel.load();
         
-        paint.updateList();
-        paint.listCount();
+        PaintModel.updateList();
+        PaintModel.listCount();
     },
 
     // 리스트 개수 그리기
-    listCount: () => {
-        document.querySelector(".count-pending").innerHTML = list.getCount().pending;
-        document.querySelector(".count-done").innerHTML = list.getCount().done;
+    listCount() {
+        document.querySelector(".count-pending").innerHTML = ListModel.getPendingToDosCount();
+        document.querySelector(".count-done").innerHTML = ListModel.getDoneToDosCount();
     },
 
     // toDoList 다시 그리기
-    updateList: () => {
+    updateList() {
         const ul = document.querySelectorAll("ul");
         console.log(ul[0].childNodes);
         ul.forEach((list) => {
@@ -99,67 +94,68 @@ const paint = {
 
             const img = document.createElement("img");
             img.src = "./img/bin.png";
-            img.addEventListener("click", interaction.imgClick);
+            img.addEventListener("click", InteractionModel.imgClick);
 
             const li = document.createElement("li");
             li.classList.add(addClass);
             li.innerHTML = item.text;
             li.appendChild(img);
 
-            li.addEventListener("click", interaction.click);
+            li.addEventListener("click", InteractionModel.click);
             document.querySelector(addToList).appendChild(li);
 
         });
     },
 
     // textField 비우기
-    inputEmpty: () => {
+    inputEmpty() {
         toDoInput.value = "";
     }
 }
 
 // Interaction 모델: 사용자랑 상호작용과 관련
-const interaction = {
+const InteractionModel = {
     // TextField 엔터 눌렀을 때
-    submit: (event) => {
+    submit(event) {
         event.preventDefault();
 
-        list.addToList(toDoInput.value);
-        localStorageModel.save();
+        ListModel.addToList(toDoInput.value);
+        LocalStorageModel.save();
 
-        paint.updateList();
-        paint.listCount();
-        paint.inputEmpty();
+        PaintModel.updateList();
+        PaintModel.listCount();
+        PaintModel.inputEmpty();
     },
 
     // To do List 항목을 클릭했을 때
-    click: (event) => {
+    click(event) {
         if (event.target.tagName == "IMG") return;
         const value = event.target.textContent; // innerHTML X
         const isDone = event.target.classList.contains("item-done");
         
-        list.updateList(value, isDone);
-        localStorageModel.save();
+        ListModel.updateList(value, isDone);
+        LocalStorageModel.save();
 
-        paint.updateList();
-        paint.listCount();
+        PaintModel.updateList();
+        PaintModel.listCount();
     },
 
     // 쓰레기통 img 클릭했을 때
-    imgClick: (event) => {
+    imgClick(event) {
         const  value = event.target.parentNode.textContent;
-        list.removeFromList(value);
-        localStorageModel.save();
+        ListModel.removeFromList(value);
+        LocalStorageModel.save();
 
-        paint.updateList();
-        paint.listCount();
+        PaintModel.updateList();
+        PaintModel.listCount();
     }
 }
 
 function init() {
-    paint.loadData();
-    toDoForm.addEventListener("submit", interaction.submit);
-    toDoButton.addEventListener("click", interaction.submit);
+    PaintModel.loadData();
+    console.log("Hi");
+    toDoForm.addEventListener("submit", InteractionModel.submit);
+    toDoButton.addEventListener("click", InteractionModel.submit);
 }
 
 init();
