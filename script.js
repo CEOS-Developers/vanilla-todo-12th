@@ -1,64 +1,63 @@
-const inputJs = document.querySelector(".input"),
-    toDoNewJs = inputJs.querySelector("#todo-new"),
-    listWaitingJs = document.querySelector(".waiting"),
-    listCompleteJs = document.querySelector(".complete");
+const todoForm = document.querySelector(".input"),
+    todoInput = todoForm.querySelector("#todo-input"),
+    waitingList = document.querySelector(".waiting"),
+    completeList = document.querySelector(".complete"),
+    countWaitingJs = document.querySelector("#count-waiting"),
+    countCompleteJs = document.querySelector("#count-complete");
 
-const TODOS = "toDos"; //key for saving todos in local storage
-
-let toDos = [];
+const TODOS = "todos"; //key for saving todos in local storage
+let todoList = [];
 let maxId = 0;
 let countWaiting = 0, countComplete = 0;
-let tmpType; //only for deleteToDo and moveToDo
+let tmpType; //only for deleteTodo and moveTodo
 
-function saveToDos() {
-    localStorage.setItem(TODOS, JSON.stringify(toDos));
+function saveTodos() {
+    localStorage.setItem(TODOS, JSON.stringify(todoList));
 }
 
 function printCount() {
-    const countWaitingJs = document.querySelector("#count-waiting"),
-        countCompleteJs = document.querySelector("#count-complete");
     countWaitingJs.innerText = countWaiting;
     countCompleteJs.innerText = countComplete;
 }
 
-function deleteToDo(event){
+function deleteTodo(event){
     const li = event.target.parentNode;
     tmpType = li.parentNode.className;
     
     if(tmpType === "list waiting"){ 
-        listWaitingJs.removeChild(li);
+        waitingList.removeChild(li);
         countWaiting -= 1; 
     } 
     else{
-        listCompleteJs.removeChild(li);
+        completeList.removeChild(li);
         countComplete -= 1;    
     }
     printCount();
    
-    const cleanToDos = toDos.filter(function(toDo){
-        return toDo.id !== parseInt(li.id);
+    const cleanTodos = todoList.filter(function(todo){
+        return todo.id !== parseInt(li.id);
     });
-    toDos = cleanToDos;
-    saveToDos();
+    todoList = cleanTodos;
+    saveTodos();
 
     maxId += 1; //prevent ovelapping of id
 }
 
-function moveToDo(event){
-    deleteToDo(event);
+function moveTodo(event){
+    deleteTodo(event);
     const targetContent = event.target.innerText;
-    if(tmpType === "list waiting") { printToDo(targetContent, "comp"); }
-    else { printToDo(targetContent, "wait");}
+    if(tmpType === "list waiting") { printTodo(targetContent, "completed"); }
+    else { printTodo(targetContent, "wait");}
 }
 
-function printToDo(content, type) {
+function printTodo(content, type) {
     const li = document.createElement("li");
-    li.setAttribute("class", "todo");
+    li.classList.add("todo");
     const p = document.createElement("p");
-    p.addEventListener("click",moveToDo);
+    p.addEventListener("click",moveTodo);
     const delBtn = document.createElement("button");
-    delBtn.setAttribute("class", "button delete");
-    delBtn.addEventListener("click", deleteToDo);
+    delBtn.classList.add("trash");
+    delBtn.addEventListener("click", deleteTodo);
     const newId = maxId + 1;
 
     p.innerText = content;
@@ -67,24 +66,24 @@ function printToDo(content, type) {
     li.id = newId;
     
     if(type === "wait") {
-        listWaitingJs.appendChild(li);
+        waitingList.appendChild(li);
         countWaiting += 1;
     }
     else {
-        listCompleteJs.appendChild(li);
+        completeList.appendChild(li);
         countComplete += 1;
     }
 
     printCount();
 
-    const toDoObj = {
+    const todoObj = {
         content: content,
         id: newId,
         type : type
     };
 
-    toDos.push(toDoObj);
-    saveToDos();
+    todoList.push(todoObj);
+    saveTodos();
 
     maxId += 1;
 }
@@ -93,24 +92,23 @@ function loadList() {
     const loadedList = localStorage.getItem(TODOS);
     if (loadedList !== null) {
         const parsedList = JSON.parse(loadedList);
-        parsedList.forEach(function(toDo){
-            printToDo(toDo.content, toDo.type);
-            console.log(toDo.content);
+        parsedList.forEach(function(todo){
+            printTodo(todo.content, todo.type);
         });
     }
 }
 
 function handleSubmit(event) {
     event.preventDefault();
-    const tempValue = toDoNewJs.value;
-    printToDo(tempValue, "wait");
-    toDoNewJs.value = "";
+    const tempValue = todoInput.value;
+    printTodo(tempValue, "wait");
+    todoInput.value = "";
 }
 
 function init() {
     printCount();
     loadList();
-    inputJs.addEventListener("submit", handleSubmit);
+    todoForm.addEventListener("submit", handleSubmit);
 }
 
 init();
