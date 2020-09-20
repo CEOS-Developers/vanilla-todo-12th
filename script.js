@@ -106,8 +106,8 @@ function handleSubmit(event) {
 }
 
 function init() {
-    updateCount();
     loadList();
+    updateCount();
     todoForm.addEventListener("submit", handleSubmit);
 }
 
