@@ -74,7 +74,7 @@ ul {
   color: #808080;
 }
 
-.input{
+#todo-form{
   display: flex;
   flex-direction: row; 
   align-items: center;
@@ -110,6 +110,8 @@ ul {
   background: url("img/bin.png"); 
   background-repeat: no-repeat;
   background-size: contain;
+  border: 0;
+  outline: 0;
   width: 20px;
   height: 20px;
   opacity: 0;
@@ -117,6 +119,6 @@ ul {
   transition-duration: 0.5s;
 }
 
-.todo:hover .delete{
+.todo:hover .trash{
   opacity: 1;
 }

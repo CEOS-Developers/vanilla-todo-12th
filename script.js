@@ -1,14 +1,14 @@
-const todoForm = document.querySelector(".input"),
+const todoForm = document.querySelector("#todo-form"),
     todoInput = todoForm.querySelector("#todo-input"),
     waitingList = document.querySelector(".waiting"),
     completeList = document.querySelector(".complete"),
-    countWaitingJs = document.querySelector("#count-waiting"),
-    countCompleteJs = document.querySelector("#count-complete");
+    countWaiting = document.querySelector("#count-waiting"),
+    countComplete = document.querySelector("#count-complete");
 
 const TODOS = "todos"; //key for saving todos in local storage
 let todoList = [];
 let maxId = 0;
-let countWaiting = 0, countComplete = 0;
+let waitingNum = 0, completeNum = 0;
 let tmpType; //only for deleteTodo and moveTodo
 
 function saveTodos() {
@@ -16,8 +16,8 @@ function saveTodos() {
 }
 
 function printCount() {
-    countWaitingJs.innerText = countWaiting;
-    countCompleteJs.innerText = countComplete;
+    countWaiting.innerText = waitingNum;
+    countComplete.innerText = completeNum;
 }
 
 function deleteTodo(event){
@@ -26,18 +26,16 @@ function deleteTodo(event){
     
     if(tmpType === "list waiting"){ 
         waitingList.removeChild(li);
-        countWaiting -= 1; 
+        waitingNum -= 1; 
     } 
     else{
         completeList.removeChild(li);
-        countComplete -= 1;    
+        completeNum -= 1;    
     }
     printCount();
    
-    const cleanTodos = todoList.filter(function(todo){
-        return todo.id !== parseInt(li.id);
-    });
-    todoList = cleanTodos;
+    todoList = todoList.filter(todo => todo.id !==
+        parseInt(li.id));
     saveTodos();
 
     maxId += 1; //prevent ovelapping of id
@@ -46,32 +44,32 @@ function deleteTodo(event){
 function moveTodo(event){
     deleteTodo(event);
     const targetContent = event.target.innerText;
-    if(tmpType === "list waiting") { printTodo(targetContent, "completed"); }
-    else { printTodo(targetContent, "wait");}
+    if(tmpType === "list waiting") { addTodo(targetContent, "completed"); }
+    else { addTodo(targetContent, "wait");}
 }
 
-function printTodo(content, type) {
+function addTodo(content, type) {
     const li = document.createElement("li");
     li.classList.add("todo");
     const p = document.createElement("p");
     p.addEventListener("click",moveTodo);
-    const delBtn = document.createElement("button");
-    delBtn.classList.add("trash");
-    delBtn.addEventListener("click", deleteTodo);
+    const trashBtn = document.createElement("button");
+    trashBtn.classList.add("trash");
+    trashBtn.addEventListener("click", deleteTodo);
     const newId = maxId + 1;
 
     p.innerText = content;
     li.appendChild(p);
-    li.appendChild(delBtn);
+    li.appendChild(trashBtn);
     li.id = newId;
     
     if(type === "wait") {
         waitingList.appendChild(li);
-        countWaiting += 1;
+        waitingNum += 1;
     }
     else {
         completeList.appendChild(li);
-        countComplete += 1;
+        completeNum += 1;
     }
 
     printCount();
@@ -93,7 +91,7 @@ function loadList() {
     if (loadedList !== null) {
         const parsedList = JSON.parse(loadedList);
         parsedList.forEach(function(todo){
-            printTodo(todo.content, todo.type);
+            addTodo(todo.content, todo.type);
         });
     }
 }
@@ -101,7 +99,9 @@ function loadList() {
 function handleSubmit(event) {
     event.preventDefault();
     const tempValue = todoInput.value;
-    printTodo(tempValue, "wait");
+    if(tempValue != ""){
+        addTodo(tempValue, "wait");
+    }
     todoInput.value = "";
 }
 
