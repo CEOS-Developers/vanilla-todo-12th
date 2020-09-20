@@ -31,7 +31,7 @@ function moveToDo(event) {
   if (event.target.tagName == "BUTTON") return;
 
   let status, targetToDo;
-
+  //opt
   //status : 1-> waiting , 2 -> finished
   //클릭된 할일이 어떤 상태인지 찾는다.
   toDos.forEach((toDo) => {
@@ -42,7 +42,8 @@ function moveToDo(event) {
   });
 
   //할일의 상태에 따라 해당하는 리스트에 추가한다.
-  if (status === 1) {
+
+  if (parseInt(status) === 1) {
     targetToDo.status = 2;
     toDoFinishedItems.append(target);
   } else {
@@ -68,7 +69,7 @@ function deleteToDo(event) {
   });
 
   //클릭된 할일을 삭제한다.
-  if (status === 1) toDoWaitingItems.removeChild(toDo);
+  if (parseInt(status) === 1) toDoWaitingItems.removeChild(toDo);
   else toDoFinishedItems.removeChild(toDo);
 
   //toDos list에서 현재 할일을 찾아 걸러준다.
@@ -117,7 +118,7 @@ function printToDo(text, status) {
   toDo.id = newId;
 
   //처음 할일이 들어왔을 때 할일을 waiting_list에 넣어준다
-  if (status === 1) toDoWaitingItems.appendChild(toDo);
+  if (parseInt(status) === 1) toDoWaitingItems.appendChild(toDo);
   else toDoFinishedItems.appendChild(toDo);
 
   //할일들을 object화 한다.
