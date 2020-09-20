@@ -78,14 +78,10 @@ const PaintModel = {
 
     // toDoList 다시 그리기
     updateList() {
-        const ul = document.querySelectorAll("ul");
-        ul.forEach((list) => {
-            let child = list.lastElementChild;
-            while (child) {
-                list.removeChild(child);
-                child = list.lastElementChild;
-            }
-        })    
+        const pendingTodoList = document.getElementById("list-pending");
+        const doneTodoList = document.getElementById("list-done");
+        pendingTodoList.innerHTML = "";
+        doneTodoList.innerHTML = "";
         
         toDoList.forEach((item) => {
             const classToAdd = !item.done ? "item-pending" : "item-done";
