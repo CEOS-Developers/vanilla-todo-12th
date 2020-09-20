@@ -83,7 +83,7 @@ h2 {
 }
 
 .inputNewTasks{
-  height: 50px;
+  height: 90px;
   padding: 8px;
   flex-direction: row;
   align-items: stretch;
@@ -94,19 +94,23 @@ h2 {
 
 }
 
-
-
-#todoInput{
+#todo-input{
   flex: 1; /*specify it for a child if you wnat it to fill the remaining horizontal spaces*/
   border-radius: 10px;
   padding: 0.2px;
   margin-right: 5px;
   text-align: center;
   font-size: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
 
-#addButton{
+#todoInput::placeholder{
+  color: rgba(0, 0, 0, 0.2);
+  font-family: 'NEXON Lv1 Gothic OTF';
+}
+
+#todo-submit-button{
   width : 33px;
   height : 33px;
   margin-right: 3px;
@@ -115,7 +119,6 @@ h2 {
   text-align: center;
 
   background-color: #2ec1ac;
-  -webkit-text-fill-color: white;
 }
 
 .label{
