@@ -15,7 +15,7 @@ function saveTodos() {
     localStorage.setItem(TODOS, JSON.stringify(todoList));
 }
 
-function printCount() {
+function updateCount() {
     countWaiting.innerText = waitingNum;
     countComplete.innerText = completeNum;
 }
@@ -32,7 +32,7 @@ function deleteTodo(event){
         completeList.removeChild(li);
         completeNum -= 1;    
     }
-    printCount();
+    updateCount();
    
     todoList = todoList.filter(todo => todo.id !==
         parseInt(li.id));
@@ -72,7 +72,7 @@ function addTodo(content, type) {
         completeNum += 1;
     }
 
-    printCount();
+    updateCount();
 
     const todoObj = {
         content: content,
@@ -106,7 +106,7 @@ function handleSubmit(event) {
 }
 
 function init() {
-    printCount();
+    updateCount();
     loadList();
     todoForm.addEventListener("submit", handleSubmit);
 }
