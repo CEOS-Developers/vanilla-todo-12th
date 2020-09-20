@@ -34,7 +34,7 @@ const ListModel = {
     },
 
     // list 대기중 완료 토글
-    updateList(value, isDone) {
+    updateIsDoneBy(value, isDone) {
         const i = toDoList.findIndex((item) => {
             return item.text == value;
         })
@@ -44,9 +44,9 @@ const ListModel = {
     // toDoList 배열에 추가  -> submit 할 때
     addToList(value) {
         let item = {
-            "id": toDoList.length + 1,
-            "text": value,
-            "done": false
+            id: toDoList.length + 1,
+            text: value,
+            done: false
         }
         toDoList.push(item);
     },
@@ -67,11 +67,11 @@ const PaintModel = {
         LocalStorageModel.load();
         
         PaintModel.updateList();
-        PaintModel.listCount();
+        PaintModel.updateToDoCount();
     },
 
     // 리스트 개수 그리기
-    listCount() {
+    updateToDoCount() {
         document.querySelector(".count-pending").innerHTML = ListModel.getPendingToDosCount();
         document.querySelector(".count-done").innerHTML = ListModel.getDoneToDosCount();
     },
@@ -79,9 +79,8 @@ const PaintModel = {
     // toDoList 다시 그리기
     updateList() {
         const ul = document.querySelectorAll("ul");
-        console.log(ul[0].childNodes);
         ul.forEach((list) => {
-            var child = list.lastElementChild;
+            let child = list.lastElementChild;
             while (child) {
                 list.removeChild(child);
                 child = list.lastElementChild;
@@ -89,55 +88,55 @@ const PaintModel = {
         })    
         
         toDoList.forEach((item) => {
-            const addClass = !item.done ? "item-pending" : "item-done";
-            const addToList = !item.done ? "ul.list-pending" : "ul.list-done";
+            const classToAdd = !item.done ? "item-pending" : "item-done";
+            const listToAdd = !item.done ? "ul.list-pending" : "ul.list-done";
 
             const img = document.createElement("img");
             img.src = "./img/bin.png";
-            img.addEventListener("click", InteractionModel.imgClick);
+            img.addEventListener("click", EventHandlerModel.imgClick);
 
             const li = document.createElement("li");
-            li.classList.add(addClass);
+            li.classList.add(classToAdd);
             li.innerHTML = item.text;
             li.appendChild(img);
 
-            li.addEventListener("click", InteractionModel.click);
-            document.querySelector(addToList).appendChild(li);
+            li.addEventListener("click", EventHandlerModel.click);
+            document.querySelector(listToAdd).appendChild(li);
 
         });
     },
 
     // textField 비우기
-    inputEmpty() {
+    emptyInput() {
         toDoInput.value = "";
     }
 }
 
-// Interaction 모델: 사용자랑 상호작용과 관련
-const InteractionModel = {
+// EventHandler 모델: 사용자랑 상호작용과 관련
+const EventHandlerModel = {
     // TextField 엔터 눌렀을 때
-    submit(event) {
+    handleTodoInputSubmit(event) {
         event.preventDefault();
 
         ListModel.addToList(toDoInput.value);
         LocalStorageModel.save();
 
         PaintModel.updateList();
-        PaintModel.listCount();
-        PaintModel.inputEmpty();
+        PaintModel.updateToDoCount();
+        PaintModel.emptyInput();
     },
 
     // To do List 항목을 클릭했을 때
     click(event) {
-        if (event.target.tagName == "IMG") return;
+        if (event.target.tagName === "IMG") return;
         const value = event.target.textContent; // innerHTML X
         const isDone = event.target.classList.contains("item-done");
         
-        ListModel.updateList(value, isDone);
+        ListModel.updateIsDoneBy(value, isDone);
         LocalStorageModel.save();
 
         PaintModel.updateList();
-        PaintModel.listCount();
+        PaintModel.updateToDoCount();
     },
 
     // 쓰레기통 img 클릭했을 때
@@ -147,15 +146,14 @@ const InteractionModel = {
         LocalStorageModel.save();
 
         PaintModel.updateList();
-        PaintModel.listCount();
+        PaintModel.updateToDoCount();
     }
 }
 
 function init() {
     PaintModel.loadData();
-    console.log("Hi");
-    toDoForm.addEventListener("submit", InteractionModel.submit);
-    toDoButton.addEventListener("click", InteractionModel.submit);
+    toDoForm.addEventListener("submit", EventHandlerModel.handleTodoInputSubmit);
+    toDoButton.addEventListener("click", EventHandlerModel.handleTodoInputSubmit);
 }
 
 init();
