@@ -29,7 +29,6 @@ p {
 }
 
 .container {
-  padding-left: 15px;
   width: 350px;
   height: 600px;
 
@@ -42,6 +41,7 @@ p {
 }
 
 .list {
+  padding-left: 15px;
   height: 200px;
   position: relative;
   font-size: 25px;
@@ -91,6 +91,7 @@ button {
   opacity: 0;
   transition: 0.6s ease-in-out;
 }
+
 .showing {
   opacity: 1;
   transition: 0.6s ease-in-out;
