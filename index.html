@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+        <div class="wait"></div>        <!-- 대기중 ()-->
+        <ul class="list" id="wait-list"></ul>      <!-- 할 일 목록 -->
+        <div class="complete"></div>        <!-- 완료됨 ()-->
+        <ul class="list" id="complete-list"></ul>      <!-- 끝낸 일 목록 -->
+        <div class="add">     <!-- 할 일 입력 칸 -->
+          <input type="text" id="add_input" placeholder="새로운 할일 추가" onkeyup="addList(event)">
+          <button type="button" id="add-todo" onclick="addList('click')">+</button>
+        </div> 
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
