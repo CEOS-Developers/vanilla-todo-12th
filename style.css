@@ -3,9 +3,24 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: 'Cafe24Ohsquare';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+          
+          
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  
 }
 
 body {
@@ -21,11 +36,38 @@ body {
   background: #2ec1ac;
 }
 
-input,
-button,
+
+button, /*왜있음??*/
 ul,
 p {
   all: unset;
+}
+ul{
+  height: 45vw;
+
+}
+
+li{
+  font-family: 'Cafe24Ohsquare';
+  display:flex;
+  align-items:center;
+  padding: 15px;
+  font-size:1rem;
+}
+
+li>deleteBtn{
+  background-image:url("img/bin.png") ;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+
+}
+
+h2 {
+  /* text-align: center; */
+  padding: 0 15px;
+  font-size: 1.2rem;
+  font-family: 'NEXON Lv1 Gothic OTF';
 }
 
 .container {
@@ -38,4 +80,54 @@ p {
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
+}
+
+.inputNewTasks{
+  height: 90px;
+  padding: 8px;
+  flex-direction: row;
+  align-items: stretch;
+  display:flex;
+  font-family: 'NEXON Lv1 Gothic OTF';
+  margin-top: auto;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+
+}
+
+#todo-input{
+  flex: 1; /*specify it for a child if you wnat it to fill the remaining horizontal spaces*/
+  border-radius: 10px;
+  padding: 0.2px;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+#todoInput::placeholder{
+  color: rgba(0, 0, 0, 0.2);
+  font-family: 'NEXON Lv1 Gothic OTF';
+}
+
+#todo-submit-button{
+  width : 33px;
+  height : 33px;
+  margin-right: 3px;
+  border-radius: 20px;
+
+  text-align: center;
+
+  background-color: #2ec1ac;
+}
+
+.label{
+  flex-grow: 1; /*st*/
+}
+
+
+.finished-list-item-fall{
+  transition: all 0.3s ease-out;
+  transform: translateY(12rem) rotateZ(10deg);
+  opacity:0;
 }
