@@ -7,7 +7,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="waiting__header" style="padding-left: 15px">
+        <h3 class="list__num">대기중</h3>
+        <span class="waiting__number">(0)</span>
+      </div>
+      <div class="waiting__list list">
+        <ul class="waiting__items items"></ul>
+      </div>
+      <div class="finished__header" style="padding-left: 15px">
+        <h3 class="list__num">완료됨</h3>
+        <span class="finished__number">(0)</span>
+      </div>
+      <div class="finished__list list">
+        <ul class="finished__items items"></ul>
+      </div>
+      <div class="input__container">
+        <form class="toDo__form">
+          <div class="input__box">
+            <input type="text" placeholder="새로운 할일 추가" />
+            <i class="fas fa-plus-circle fa-2x input__icon"></i>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/6478f529f2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
