@@ -26,8 +26,24 @@ button,
 ul,
 p {
   all: unset;
+  font-family: 'MaplestoryOTFBold';
 }
 
+button{
+  cursor: pointer;
+  margin-left: auto;
+}
+ul{
+  display: flex;
+}
+h3{
+  font-family: 'MaplestoryOTFBold';
+}
+
+span{
+  cursor: pointer;
+  font-family: 'MaplestoryOTFBold';
+}
 .container {
   width: 350px;
   height: 600px;
@@ -39,3 +55,65 @@ p {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
+
+.firstRow,.secondRow{
+  height:10vh;
+  margin-left: 1rem;
+  
+}
+
+
+
+.firstList,.secondList{
+  height:35vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow-y: scroll;
+}
+.completeList{
+  text-decoration: line-through;
+  color: gray;
+}
+.thirdRow{
+  height:10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.todoInput{
+  width: 80%;
+  height: 60%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  text-align: center;
+  margin: 0.3rem;
+  
+}
+
+.plusButton{
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  background-color: #2ec1ac;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+}
+.trash{
+  width: 1.5rem;
+  opacity: 0;
+  transition: 0.3s;
+}
+.trash:hover{
+  opacity: 1;
+}
+
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+            
