@@ -1,5 +1,5 @@
 # 1주차 미션: Vanilla-Todo
-
+https://yunaisme.github.io/vanilla-todo-12th/
 # 서론
 
 안녕하세요 🙌🏻 프론트엔드 운영진 **정시원**입니다.

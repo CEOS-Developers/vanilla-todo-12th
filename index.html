@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      
+      <h2>대기중 (<span id="count-waiting"></span>)</h2>
+      <ul class="list waiting"></ul>
+
+      <h2>완료됨 (<span id="count-complete"></span>)</h2>
+      <ul class="list complete"></ul>
+
+      <form id="todo-form">
+        <input id="todo-input" type="text" placeholder="새로운 할일 추가">
+        <input id="todo-submit" type="submit" value="+">
+      </form>
+
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
