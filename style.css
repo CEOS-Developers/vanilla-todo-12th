@@ -5,7 +5,14 @@ body {
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "ImcreSoojin";
+}
+
+@font-face {
+  font-family: 'ImcreSoojin';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -38,4 +45,101 @@ p {
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
+}
+
+
+.container-list {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.title {
+  width: 100%;
+  /* height는 h3 기본 높이 */
+  padding: 0 15px;
+  margin: 15px 0;
+}
+
+ul {
+  width: 100%;
+  height: 100%;
+
+  font-size: 0.97rem;
+  list-style-type: none;
+  /* Remove bullets */
+
+}
+
+li {
+  padding: 5px 15px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item-done {
+  text-decoration: line-through;
+  /* middle line */
+}
+
+#todo-form {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+
+  /* offset-x offset-y blur(제플린의 절반 값) color */
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.07);
+
+  padding: 8px;
+}
+
+.input-text {
+  width: 85%;
+
+  padding: 5px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+
+  text-align: center;
+  font-size: 13px;
+}
+
+
+#input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.input-button {
+  width: 32px;
+  height: 32px;
+
+  margin-left: 5px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+
+  color: white;
+  background-color: #2ec1ac;
+
+  font-weight: bolder;
+  text-align: center;
+}
+
+img {
+  display: none;
+}
+
+li:hover img {
+  width: 5%;
+  height: 5%;
+  opacity: 0.8;
+  display: block;
 }
