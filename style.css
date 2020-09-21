@@ -1,41 +1,112 @@
 html,
 body {
-  margin: 0;
+    margin: 0;
 }
 
 * {
-  box-sizing: border-box;
-  font-family: sans-serif;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 
-  /* Center Container */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    /* Center Container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  /* Coloring */
-  background: #2ec1ac;
+    /* Coloring */
+    background: #2ec1ac;
 }
 
 input,
 button,
 ul,
 p {
-  all: unset;
+    all: unset;
 }
 
 .container {
-  width: 350px;
-  height: 600px;
+    width: 350px;
+    height: 600px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
-  background: white;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+    background: white;
+}
+
+.todo-button {
+    width: 50px;
+    display: inline-block;
+    background-color: #16a085;
+    border-radius: 13px;
+    color: white;
+    margin-top: 4px;
+    padding: 2px;
+    font-weight: 600;
+    text-align: center;
+    transition-duration: 0.4s;
+}
+.todo-button:hover {
+    background-color: rgb#082a4d;
+    color: red;
+}
+.todo-button:active {
+    background-color: rgb(99, 187, 187);
+}
+.todo-button:visited {
+    background-color: #16a085;
+    color: white;
+}
+
+#todo-header,
+#done-header,
+#todo-list,
+#done-list {
+    width: 350px;
+    margin-bottom: 1px;
+    font: 1.25rem 'Fira Sans', sans-serif;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+#todo-list,
+#done-list {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.todolist-content {
+    font: 0.9rem 'Fira Sans', sans-serif;
+    font-weight: 600;
+    display: inline-block;
+    width: 275px;
+}
+
+.input-box {
+    display: flex;
+    margin-top: 2px;
+    display: inline-block;
+    text-align: center;
+}
+.input-box > input[type='text'] {
+    width: 250px;
+    border: 2px solid rgb(134, 233, 216);
+    font-size: 1rem 'FiraSans';
+    font-weight: 600;
+    padding: 3px;
+    border-radius: 5px;
+}
+.input-box > input[type='submit'] {
+    padding-bottom: 5px;
+}
+
+.delete-image {
+    width: 1rem;
+    height: 1rem;
 }
